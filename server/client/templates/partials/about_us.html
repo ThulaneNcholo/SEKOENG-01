@@ -1,0 +1,113 @@
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .about_container {
+    background-color: var(--primary_color);
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .lodge_image {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    /* border-radius: 12px;  */
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+
+  .about_content {
+    background-color: var(--secondary-page-background);
+    /* border-radius: 12px;  */
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+
+  .logo {
+    object-fit: contain;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .about_us_title {
+    font-family: var(--heading-font);
+    color: var(--primary_color);
+  }
+
+  .about_paragraph {
+    font-family: var(--paragraph-font);
+    color: var(--primary_color);
+  }
+
+  .btn_read_more {
+    border-color: var(--primary_color) !important;
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+  }
+
+  @media screen and (max-width: 576px) {
+    .lodge_image {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .about_content {
+      background-color: var(--secondary-page-background);
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+  }
+</style>
+
+<div class="about_container">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 about_content px-0">
+        <div class="p-3">
+          <center>
+            <img
+              src="{% static '/images/logo_farm.jpeg' %}"
+              alt=""
+              class="logo mb-4"
+            />
+            <h3 class="about_us_title">Our Story</h3>
+            <p class="about_paragraph">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quae
+              ullam saepe sint nesciunt debitis accusantium in porro nemo
+              repellendus hic pariatur, maxime optio amet provident voluptate
+              quidem, nisi non!
+            </p>
+
+            <button class="btn btn btn-outline-dark btn_read_more mt-4">
+              read more
+            </button>
+          </center>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 px-0">
+        <img
+          src="{% static '/images/ncholoFarm.png' %}"
+          alt=""
+          class="lodge_image"
+        />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<div id="confirmationContainer">
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Room Confirmation</h3>
+    </div>
+    <div class="col">
+      <button class="btn btn-dark" onclick="editBooking(event)">
+        Edit Booking
+      </button>
+    </div>
+  </div>
+
+  {% if userDetails %}
+  <!-- ======= Table heading ======= -->
+  <div class="row mb-3">
+    <div class="col">
+      <h5 class="fw-bold">Date</h5>
+    </div>
+    <div class="col">
+      <h5 class="fw-bold">Breakfast</h5>
+    </div>
+    <div class="col">
+      <h5 class="fw-bold">Lunch</h5>
+    </div>
+    <div class="col">
+      <h5 class="fw-bold">Dinner</h5>
+    </div>
+  </div>
+
+  <!-- ======= Table Data ======= -->
+  {% for data in userDates %}
+  <div class="row mb-3">
+    <div class="col">
+      <h6 class="fw-bold">{{data.date}}</h6>
+    </div>
+    <div class="col">
+      <h6>{{data.breakfast}}</h6>
+    </div>
+    <div class="col">
+      <h6>{{data.lunch}}</h6>
+    </div>
+    <div class="col">
+      <h6>{{data.dinner}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+  {% endfor %}
+
+  <!-- ======= Totals ======= -->
+  <div class="row mb-2 mt-5">
+    <div class="col">
+      <h6 class="fw-bold">Room Total</h6>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <h6 class="fw-bold">R{{roomTotal}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+  <div class="row mb-2">
+    <div class="col">
+      <h6 class="fw-bold">Food Total</h6>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <h6 class="fw-bold">R{{foodTotal}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+  <div class="row mb-2">
+    <div class="col">
+      <h6 class="fw-bold">Grand Total</h6>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <h6 class="fw-bold">R{{grandtotal}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" id="infouuid" name="uuidinfo" hidden="True" />
+    <input type="text" value="{{roomTotal}}" name="room_total" />
+    <input type="text" value="{{foodTotal}}" name="food_total" />
+    <input type="text" value="{{grandtotal}}" name="grand_total" />
+    <center>
+      <button
+        class="btn btn-outline-dark px-5 py-3 my-5"
+        hx-post="{% url 'user-information' %}"
+        hx-target="#user-information"
+        onclick="userinformation(event)"
+        style="width: 50%"
+      >
+        Complete Booking Information
+      </button>
+    </center>
+  </form>
+</div>
+
+<!-- ======= User information Collect ======= -->
+<div class="container mt-5" id="user-information" style="display: none">
+  {% include 'BookRoomPartials/user_information.html' %}
+</div>
+
+<!-- divider  -->
+{% endif %}
+
+<script>
+  function userinformation() {
+    document.getElementById("user-information").style.display = "Block";
+    document.getElementById("confirmationContainer").style.display = "None";
+
+    // Retrieve the UUID from localStorage
+    const savedUUID = localStorage.getItem("uuid");
+
+    // Check if a UUID exists in localStorage
+    if (savedUUID) {
+      // Set the retrieved UUID as the value of the input field
+      document.getElementById("infouuid").value = savedUUID;
+    }
+  }
+
+  function editBooking() {
+    document.getElementById("room-dates").style.display = "Block";
+    document.getElementById("roomconfirmationDetails").style.display = "None";
+  }
+</script>

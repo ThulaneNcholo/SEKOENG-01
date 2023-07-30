@@ -1,0 +1,108 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .page_title {
+    color: var(--primary_color);
+  }
+
+  .secondary_title {
+    color: var(--secondary_color);
+  }
+
+  .activity_image {
+    height: 400px;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .deco_style {
+    border-radius: 12px;
+    width: 3px;
+    height: 70%;
+    background-color: var(--secondary_color);
+  }
+
+  .activity_price {
+    font-size: 14px;
+  }
+
+  .desciption_style {
+    font-family: var(--paragraph-font);
+  }
+
+  .btn_view {
+    border-color: var(--primary_color);
+    font-family: var(--paragraph-font);
+    color: var(--primary_color);
+    font-weight: 700;
+  }
+</style>
+
+<div class="secondary_container container_padding">
+  <div class="container mt-5">
+    <h1 class="fw-bold page_title">Wild Adventures Unleashed</h1>
+    <h3 class="secondary_title">Embrace Nature's Thrills!</h3>
+  </div>
+
+  <div class="container mt-5">
+    {% for data in activities %}
+    <div class="row mb-5">
+      <div class="col-12 col-md mb-3">
+        <img src="{{data.image.url}}" alt="" class="activity_image" />
+      </div>
+      <div class="col-1">
+        <div class="deco_style"></div>
+      </div>
+      <div class="col">
+        <h3 class="fw-bold secondary_title">{{data.title}}</h3>
+        {% if data.event_date%}
+        <h2 class="fw-bold page_title mt-4" style="font-size: 16px">
+          coming soon
+        </h2>
+        <h2 class="fw-bold page_title">{{data.event_date}}</h2>
+        <p class="text-secondary desciption_style">
+          {{data.count_description}}
+        </p>
+        {% else %}
+        <h2 class="fw-bold page_title">
+          R{{data.price_per_person}}
+          <span class="activity_price">per person</span>
+        </h2>
+        <p class="text-secondary desciption_style">{{data.description}}</p>
+        {% endif %}
+        <a href="{% url 'activities-details' data.id %}">
+          <button class="btn btn-outline-dark btn_view">Explore</button>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

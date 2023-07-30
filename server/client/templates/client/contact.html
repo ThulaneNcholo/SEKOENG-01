@@ -1,0 +1,119 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .primary_container {
+    background-color: var(--primary_color);
+  }
+
+  .contact_green_sub {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+  }
+
+  .contact_title {
+    color: var(--primary_color);
+    font-weight: 700;
+    font-family: var(--heading-font);
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .contact_btn {
+    background-color: var(--primary_color);
+    color: var(--secondary-page-background);
+    font-family: var(--heading-font);
+  }
+
+  .contact_image {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .contact_heading {
+    color: var(--secondary-page-background);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .call_title {
+    color: var(--secondary-page-background);
+    font-family: var(--paragraph-font);
+  }
+
+  .line_deco {
+    color: var(--secondary-page-background);
+  }
+</style>
+
+<div class="secondary_container container_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <h4 class="contact_green_sub">Inspired by you, alway</h4>
+        <h1 class="contact_title">Connect with us</h1>
+        <button class="btn contact_btn py-3 fw-bold px-5 my-5">Call Now</button>
+      </div>
+      <div class="col-12 col-md-6">
+        <img
+          src="{% static '/images/ncholo1.png' %}"
+          alt=""
+          class="contact_image"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="primary_container container_padding">
+  <div class="container">
+    <h3 class="contact_heading">011 837 3737</h3>
+    <h5 class="call_title">Telephone</h5>
+    <hr class="line_deco my-5" />
+    <h3 class="contact_heading">011 837 3737</h3>
+    <h5 class="call_title">Telephone</h5>
+    <hr class="line_deco my-5" />
+    <h3 class="contact_heading">sekoeng@gmail.com</h3>
+    <h5 class="call_title">Email</h5>
+    <hr class="line_deco my-5" />
+
+    <div class="mt-5">
+      <h2 class="contact_heading">Find us</h2>
+      <h5 class="call_title">Sekoeng Cullinan Luxury Cottages</h5>
+      <h5 class="call_title">Brandbach Gravel Road Brandbach Cullinan, 1000</h5>
+      <h5
+        class="call_title mt-5 fw-bold"
+        style="text-decoration: underline; font-size: 22px"
+      >
+        Get Direction
+      </h5>
+    </div>
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

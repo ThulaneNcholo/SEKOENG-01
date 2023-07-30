@@ -1,0 +1,149 @@
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+  }
+
+  .secondary_title {
+    color: var(--secondary_color);
+  }
+
+  .facility_container {
+    background-color: var(--primary_color);
+  }
+
+  .facility_image {
+    height: 200px;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .card_container {
+    background-color: white;
+    border-radius: 12px;
+    min-height: 500px;
+    max-width: 550px;
+  }
+
+  .card_titles {
+    font-weight: 600;
+    color: var(--secondary_color);
+  }
+
+  /* New styling  */
+  .component_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .container_1 {
+    background-color: var(--primary_color);
+  }
+
+  .container_2 {
+    background-color: var(--secondary-page-background);
+  }
+
+  .component_image {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .component_title {
+    font-family: "Libre Baskerville", serif;
+    color: var(--primary_color);
+  }
+
+  .paragaph_tags {
+    font-family: "Figtree", sans-serif;
+    color: var(--primary_color);
+  }
+
+  .component_2_title {
+    color: #ffffff;
+    font-family: "Libre Baskerville", serif;
+  }
+
+  .paragaph_tags_2 {
+    font-family: "Figtree", sans-serif;
+    color: #ffffff;
+  }
+
+  .heading_component {
+    background-color: var(--primary_color);
+  }
+
+  @media screen and (max-width: 576px) {
+    .component_image {
+      height: 300px;
+    }
+  }
+</style>
+
+<div class="heading_component">
+  <div class="pt-5">
+    <center>
+      <h1 class="fw-bold page_title text-white">Nature's Retreat</h1>
+      <h3 class="secondary_title mb-0">Our World-Class Facilities</h3>
+    </center>
+  </div>
+  {% for data in facilities %}
+  <!-- divider  -->
+  {% if forloop.counter|divisibleby:"2" %}
+  <div class="container_2 component_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-5">
+          <img
+            src="{{data.image.url}}"
+            alt="SEKOENG CULLIAN LUXURY COTTAGES facilities"
+            class="component_image"
+          />
+        </div>
+        <div class="col-12 col-md-6 mb-5">
+          <h3 class="component_title mb-3">{{data.title}}</h3>
+          <h1
+            class="component_title mb-4"
+            style="font-weight: 700; letter-spacing: 1px"
+          >
+            {{data.subtitle}}
+          </h1>
+          <p class="paragaph_tags">{{data.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="container_1 component_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-5">
+          <h3 class="component_2_title mb-3">{{data.title}}</h3>
+          <h1
+            class="component_2_title mb-4"
+            style="font-weight: 700; letter-spacing: 1px"
+          >
+            {{data.subtitle}}
+          </h1>
+          <p class="paragaph_tags_2">{{data.description}}</p>
+        </div>
+        <div class="col-12 col-md-6 mb-5">
+          <img
+            src="{{data.image.url}}"
+            alt="SEKOENG CULLIAN LUXURY COTTAGES facilities"
+            class="component_image"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif%}
+  <!-- divider  -->
+  {% endfor %}
+</div>

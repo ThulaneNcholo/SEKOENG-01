@@ -1,0 +1,99 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+<div class="container mt-5" id="selectDates">
+  <h1>Select Dates</h1>
+
+  <!-- ======= Select Checkin date and Checkout date ======= -->
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="roomID" value="{{room.id}}" hidden="True" />
+    <div class="row mt-4">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingInput"
+            name="checkIn"
+            placeholder="Check in"
+          />
+          <label for="floatingInput">Check in</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingInput"
+            name="checkOut"
+            placeholder="Check out"
+          />
+          <label for="floatingInput">Check out</label>
+        </div>
+      </div>
+      <div class="col">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          name="guests"
+        >
+          {% with num=room.people %}
+          <!-- divider  -->
+          {% for i in ""|rjust:num %}
+          <option value="{{ forloop.counter }}">
+            {{ forloop.counter }} Guests
+          </option>
+          {% endfor %}
+          <!-- divder  -->
+          {% endwith %}
+        </select>
+      </div>
+    </div>
+    <input type="text" name="uuid" value="" id="uuid-field" hidden />
+    <center>
+      <button
+        hx-post="{% url 'room-availability' %}"
+        hx-target="#dateResults"
+        class="btn btn-dark"
+        onclick="getUUID(event)"
+      >
+        submit dates
+      </button>
+    </center>
+  </form>
+
+  <!-- ======= SHOW HTMX RESULTS ======= -->
+  <div id="dateResults" class="my-5">
+    {% include 'roomPartials/checkRoom.html' %}
+  </div>
+</div>
+
+<!-- ======= Confirmation Details Check ======= -->
+<div class="container mt-5" id="detailsCheck" style="display: none">
+  {% include 'roomPartials/confirmBooking.html' %}
+</div>
+
+<!-- ======= User Details ======= -->
+<div class="container mt-5" id="userdetails" style="display: none">
+  {% include 'roomPartials/userDetails.html' %}
+</div>
+
+<script>
+  function getUUID() {
+    // Retrieve the UUID from localStorage
+    const savedUUID = localStorage.getItem("uuid");
+
+    // Check if a UUID exists in localStorage
+    if (savedUUID) {
+      // Set the retrieved UUID as the value of the input field
+      document.getElementById("uuid-field").value = savedUUID;
+    }
+  }
+</script>
+
+<!-- divider  -->
+{% endblock %}

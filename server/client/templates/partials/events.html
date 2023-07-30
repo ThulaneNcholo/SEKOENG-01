@@ -1,0 +1,263 @@
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .event01 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.358)),
+      url("{% static '/images/service_banner.png' %}");
+    height: 700px;
+    background-size: cover;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .event02 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.358)),
+      url("{% static '/images/event2.jpeg' %}");
+    height: 340px;
+    background-size: cover;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .event03 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.358)),
+      url("{% static '/images/service_banner.png' %}");
+    height: 340px;
+    background-size: cover;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .eventContainer1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.358)),
+      url("{% static '/images/event3.png' %}");
+    height: 340px;
+    background-size: cover;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .eventContainer2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.358)),
+      url("{% static '/images/event4.png' %}");
+    height: 340px;
+    background-size: cover;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .eventContainer3 {
+    background-color: black;
+    height: 340px;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  @media screen and (max-width: 576px) {
+    .event01 {
+      height: 350px;
+    }
+
+    .event02 {
+      height: 200px;
+    }
+
+    .event03 {
+      height: 200px;
+    }
+
+    .eventContainer1 {
+      height: 200px;
+    }
+
+    .eventContainer2 {
+      height: 200px;
+    }
+
+    .eventContainer3 {
+      height: 200px;
+    }
+
+    .events_image {
+      height: 300px !important;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+
+  /* New styling  */
+  .event_container {
+    background-color: var(--primary_color);
+  }
+
+  .headint_titles {
+    color: var(--secondary-page-background);
+    font-family: var(--heading-font);
+  }
+
+  .events_image {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .events_title {
+    color: var(--secondary-page-background);
+    font-weight: 700;
+    font-family: var(--heading-font);
+    margin-bottom: 30px;
+  }
+
+  .events_description {
+    color: var(--secondary-page-background);
+    font-family: var(--paragraph-font);
+  }
+
+  .book_event_btn {
+    border-color: var(--secondary-page-background) !important;
+    color: var(--secondary-page-background) !important;
+    width: 50%;
+  }
+</style>
+
+<!-- <div class="container-fluid my-5">
+  <center>
+    <h3 class="headings mb-5">Events</h3>
+  </center>
+  <div class="row">
+    <div class="col-12 col-md-6 mb-4">
+      <div class="event01 p-3">
+        <div class="content-section" style="position: absolute; bottom: 0px">
+          <h3 class="text-white fw-bold event_titles">
+            Unite, Celebrate, and Embrace Nature's Embrace!
+          </h3>
+          <p class="text-white">
+            family reunion, a corporate retreat, or a special celebration, our
+            lodge provides the perfect setting for bonding, laughter, and
+            forging unforgettable connections amidst the untamed beauty of the
+            wild.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="event02 mb-4 p-3">
+            <div
+              class="content-section"
+              style="position: absolute; bottom: 0px"
+            >
+              <h3 class="text-white fw-bold event_titles">
+                Enchanted Wilderness Weddings
+              </h3>
+              <p class="text-white">
+                Love's unforgettable journey! Vows amid breathtaking landscapes
+                and romance.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="eventContainer1 mb-4 p-3">
+            <div
+              class="content-section"
+              style="position: absolute; bottom: 0px"
+            >
+              <h3 class="text-white fw-bold event_titles">Rev Up & Roar</h3>
+              <p class="text-white">
+                A thrilling car show amidst nature's majesty! Classic beauties
+                and roaring engines.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="eventContainer2 mb-4 p-3">
+            <div
+              class="content-section"
+              style="position: absolute; bottom: 0px"
+            >
+              <h3 class="text-white fw-bold event_titles">Wild Gatherings</h3>
+              <p class="text-white">
+                Unite, celebrate, and embrace nature's embrace! Bond, laugh, and
+                connect in untamed beauty.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="eventContainer3 mb-4 p-3">
+            <div
+              class="content-section"
+              style="position: absolute; bottom: 0px"
+            >
+              <h3 class="text-white fw-bold event_titles">Event Bookings</h3>
+              <h3 class="text-white fw-bold event_titles">067 086 1616</h3>
+              <p class="text-white" style="font-size: 12px">
+                Unlock unforgettable experiences - Book your dream event amidst
+                untamed landscapes and luxurious comfort. Celebrate life's
+                milestones in the embrace of nature's haven.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="event_container py-5">
+  <center>
+    <h1 class="fw-bold headint_titles">Events</h1>
+    <h3 class="headint_titles">We’ll make it happen</h3>
+  </center>
+
+  <div class="container mt-5">
+    <div class="row">
+      {% for data in events %}
+      <div class="col-12 col-md mb-4">
+        <div>
+          <img
+            src="{{data.image.url}}"
+            alt="SEKOENG CULLIAN LUXURY COTTAGES events"
+            class="events_image"
+          />
+          <div class="mt-5">
+            <center>
+              <h4 class="events_title">{{data.title}}</h4>
+              <p class="events_description mb-5">{{data.description}}</p>
+              <h6 class="events_title" style="text-decoration: underline">
+                LEARN MORE
+              </h6>
+            </center>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <center>
+    <button
+      type="button"
+      class="btn btn-outline-dark book_event_btn py-3 fw-bold my-5"
+    >
+      BOOK NOW
+    </button>
+  </center>
+</div>

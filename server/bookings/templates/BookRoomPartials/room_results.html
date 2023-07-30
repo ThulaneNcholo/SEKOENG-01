@@ -1,0 +1,195 @@
+{% if foodDates %}
+<div id="roomprice-id">{% include 'BookRoomPartials/roomPrice.html' %}</div>
+<!-- divider  -->
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" value="" name="date" id="date-input" hidden="True" />
+  <input type="text" name="cartID" value="{{foodDates.id}}" hidden="True" />
+  <input type="text" value="" name="status" id="status" hidden="True" />
+
+  <div class="row">
+    {% for data in foodDates.catered.all %}
+    <!-- divider  -->
+    {% if forloop.first %}
+    <div class="col">
+      <p class="mb-3 fw-bold">{{data.date}}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-lunch"
+          name="option"
+          hx-post="{% url 'room-price' 2 %}"
+          hx-trigger="change"
+          hx-target="#roomprice-id"
+          onchange="addOrremove(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-lunch">
+          Lunch (R100 per person)</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-dinner"
+          name="option"
+          hx-post="{% url 'room-price' 3 %}"
+          hx-trigger="change"
+          hx-target="#roomprice-id"
+          onchange="addOrremove(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-dinner">
+          Dinner (R120 per person )
+        </label>
+      </div>
+    </div>
+    {% elif forloop.last %}
+    <div class="col">
+      <p class="mb-3 fw-bold">{{data.date}}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-breakfast"
+          name="option"
+          hx-post="{% url 'room-price' 1 %}"
+          hx-trigger="change"
+          hx-target="#roomprice-id"
+          onchange="addOrremove(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-breakfast">
+          Breakfast (R70 per person )
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-lunch"
+          name="option"
+          hx-post="{% url 'room-price' 2 %}"
+          hx-trigger="change"
+          hx-target="#roomprice-id"
+          onchange="addOrremove(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-lunch">
+          Lunch (R100 per person )</label
+        >
+      </div>
+    </div>
+    {% else %}
+    <div class="col">
+      <p class="mb-3 fw-bold">{{data.date}}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-breakfast"
+          name="option"
+          hx-post="{% url 'room-price' 1 %}"
+          hx-trigger="change"
+          hx-target="#roomprice-id"
+          onchange="addOrremove(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-breakfast">
+          Breakfast (R70 per person )
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-lunch"
+          name="option"
+          hx-post="{% url 'room-price' 2 %}"
+          hx-trigger="change"
+          hx-target="#roomprice-id"
+          onchange="addOrremove(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-lunch">
+          Lunch (R100 per person)</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-dinner"
+          name="option"
+          hx-post="{% url 'room-price' 3 %}"
+          hx-trigger="change"
+          hx-target="#roomprice-id"
+          onchange="addOrremove(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-dinner">
+          Dinner (R120 per person )
+        </label>
+      </div>
+    </div>
+    {% endif %}
+    <!-- divider  -->
+    {% endfor %}
+  </div>
+</form>
+
+<center>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" id="userID" name="uuid" hidden="True" />
+    <button
+      type="submit"
+      hx-post="{% url 'details-confirm' %}"
+      hx-target="#roomconfirmationDetails"
+      class="btn btn-dark my-5 px-3"
+      onclick="showBooking(event)"
+    >
+      Confirm Booking
+    </button>
+  </form>
+</center>
+<!-- divider  -->
+{% else %}
+<p>
+  next available check in
+  <span class="fw-bold">{{available_date}}</span> check in time
+  <span class="fw-bold">14:00 pm</span>
+</p>
+{% endif %}
+
+<script>
+  function addOrremove(checkbox) {
+    var inputValue = checkbox.value;
+    var dateInput = document.getElementById("date-input");
+    var status = document.getElementById("status");
+
+    if (checkbox.checked) {
+      dateInput.value = inputValue;
+      status.value = "add";
+    } else {
+      dateInput.value = inputValue;
+      status.value = "remove";
+    }
+  }
+
+  function showBooking() {
+    document.getElementById("roomconfirmationDetails").style.display = "Block";
+    document.getElementById("room-dates").style.display = "None";
+
+    // Retrieve the UUID from localStorage
+    const savedUUID = localStorage.getItem("uuid");
+
+    // Check if a UUID exists in localStorage
+    if (savedUUID) {
+      // Set the retrieved UUID as the value of the input field
+      document.getElementById("userID").value = savedUUID;
+    }
+  }
+</script>

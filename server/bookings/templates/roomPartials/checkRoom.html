@@ -1,0 +1,188 @@
+{% if booking_dates %}
+<h4>Room Check</h4>
+<div id="bookingFee">{% include 'roomPartials/bookingsFee.html' %}</div>
+
+<!-- divider  -->
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" value="" name="date" id="date-input" />
+  <input type="text" value="jamal" name="status" id="status" />
+  <div class="row">
+    {% for data in booking_dates %}
+    <!-- divider  -->
+    {% if forloop.first %}
+
+    <div class="col">
+      <p class="mb-3 fw-bold">{{data.date}}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-lunch"
+          name="option"
+          hx-post="{% url 'update-fee' 2 %}"
+          hx-trigger="change"
+          hx-target="#bookingFee"
+          onchange="updateStatus(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-lunch">
+          Lunch (R100 per person)</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-dinner"
+          name="option"
+          hx-post="{% url 'update-fee' 3 %}"
+          hx-trigger="change"
+          hx-target="#bookingFee"
+          onchange="updateStatus(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-dinner">
+          Dinner (R120 per person )
+        </label>
+      </div>
+    </div>
+    {% elif forloop.last %}
+    <div class="col">
+      <p class="mb-3 fw-bold">{{data.date}}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-breakfast"
+          name="option"
+          hx-post="{% url 'update-fee' 1 %}"
+          hx-trigger="change"
+          hx-target="#bookingFee"
+          onchange="updateStatus(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-breakfast">
+          Breakfast (R70 per person )
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-lunch"
+          name="option"
+          hx-post="{% url 'update-fee' 2 %}"
+          hx-trigger="change"
+          hx-target="#bookingFee"
+          onchange="updateStatus(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-lunch">
+          Lunch (R100 per person )</label
+        >
+      </div>
+    </div>
+    {% else %}
+    <div class="col">
+      <p class="mb-3 fw-bold">{{data.date}}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-breakfast"
+          name="option"
+          hx-post="{% url 'update-fee' 1 %}"
+          hx-trigger="change"
+          hx-target="#bookingFee"
+          onchange="updateStatus(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-breakfast">
+          Breakfast (R70 per person )
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-lunch"
+          name="option"
+          hx-post="{% url 'update-fee' 2 %}"
+          hx-trigger="change"
+          hx-target="#bookingFee"
+          onchange="updateStatus(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-lunch">
+          Lunch (R100 per person)</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="{{data.date}}"
+          id="{{data.date}}-dinner"
+          name="option"
+          hx-post="{% url 'update-fee' 3 %}"
+          hx-trigger="change"
+          hx-target="#bookingFee"
+          onchange="updateStatus(this)"
+        />
+        <label class="form-check-label" for="{{data.date}}-dinner">
+          Dinner (R120 per person )
+        </label>
+      </div>
+    </div>
+
+    {% endif %}
+    <!-- divider  -->
+    {% endfor %}
+  </div>
+</form>
+
+<form method="POST">
+  {% csrf_token %}
+  <center>
+    <button
+      class="btn btn-dark"
+      hx-post="{% url 'room-confirmation' %}"
+      hx-target="#detailsCheck"
+      onclick="detailsConfirm(event)"
+    >
+      Confirm booking
+    </button>
+  </center>
+</form>
+<!-- divider  -->
+{% elif next_available_date %}
+<h5>Room not available for selected dates.</h5>
+<h6>
+  Next available check-in :
+  <span class="fw-bold">{{next_available_date}}</span>
+</h6>
+<p></p>
+{% endif %}
+
+<script>
+  function updateStatus(checkbox) {
+    var inputValue = checkbox.value;
+    var dateInput = document.getElementById("date-input");
+    var status = document.getElementById("status");
+
+    if (checkbox.checked) {
+      dateInput.value = inputValue;
+      status.value = "add";
+    } else {
+      dateInput.value = inputValue;
+      status.value = "remove";
+    }
+  }
+
+  function detailsConfirm() {
+    document.getElementById("selectDates").style.display = "None";
+    document.getElementById("detailsCheck").style.display = "Block";
+  }
+</script>

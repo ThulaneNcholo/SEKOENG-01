@@ -1,0 +1,127 @@
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .pararaph_text {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .form_fonts {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .edit_btn {
+    border-color: var(--primary_color);
+    color: var(--primary_color);
+  }
+
+  .btn_width {
+    width: 100%;
+  }
+
+  .price_title {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+</style>
+
+<p class="pararaph_text">
+  Please fill in the form below to reserve your lodge room. Our management team
+  will contact you with further details.
+</p>
+<div class="row my-4">
+  <div class="col">
+    <h3 class="price_title">Total</h3>
+  </div>
+  <div class="col">
+    <h3 class="price_title">R{{total}}</h3>
+  </div>
+</div>
+
+<div>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="First Name"
+      />
+      <label class="form_fonts" for="floatingInput">First Name</label>
+    </div>
+    <!-- end input item  -->
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Last Name"
+      />
+      <label class="form_fonts" for="floatingInput">Last Name</label>
+    </div>
+    <!-- end input item  -->
+    <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Phone"
+      />
+      <label class="form_fonts" for="floatingInput">Phone</label>
+    </div>
+    <div class="form-floating mb-5">
+      <input
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="name@example.com"
+      />
+      <label class="form_fonts" for="floatingInput">Email address</label>
+    </div>
+
+    <!-- end input item  -->
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3">
+        <a href="{% url 'message' %}">
+          <button class="btn btn_reserve py-3 btn_width order-md-last">
+            Submit Revervation
+          </button>
+        </a>
+      </div>
+      <div class="col-12 col-md-6 mb-3 order-md-first">
+        <button
+          type="button"
+          class="btn edit_btn py-3 btn_width"
+          onclick="showDates()"
+        >
+          Edit Dates
+        </button>
+      </div>
+    </div>
+  </form>
+  <a href="{% url 'message' %}">
+    <button class="btn btn_reserve py-3 btn_width order-md-last">
+      Submit Revervation
+    </button>
+  </a>
+</div>
+
+<script>
+  function showDates() {
+    document.getElementById("reserve").style.display = "None";
+    document.getElementById("reserveDate").style.display = "Block";
+  }
+</script>

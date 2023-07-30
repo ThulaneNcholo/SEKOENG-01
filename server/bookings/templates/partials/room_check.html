@@ -1,0 +1,207 @@
+{% if result_view %}
+<!-- divider  -->
+{% if result_view == 'available' %}
+<h1>Available</h1>
+
+<div id="fee">{% include 'partials/fee_paid.html' %}</div>
+
+<div class="mt-3">
+  <div class="mt-4">
+    <h4>Food Options ?</h4>
+  </div>
+  <div class="btn-group mt-3" role="group" aria-label="Basic outlined example">
+    <button
+      type="button"
+      class="btn btn-outline-dark px-5"
+      onclick="catered(event)"
+    >
+      catered
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-dark px-5"
+      onclick="self(event)"
+    >
+      self-catering
+    </button>
+  </div>
+  <div id="catered" class="mt-5" style="display: none">
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" value="" name="date" id="date-input" />
+      <input type="text" value="" name="status" id="status" />
+      <input type="text" value="None" name="confirm" id="confirm" />
+      <div class="row">
+        {% for date in date_list %}
+        <!-- divider  -->
+        {% if forloop.first %}
+        <div class="col">
+          <p class="mb-3 fw-bold">{{ date }}</p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ date }}"
+              id="{{date}}-lunch"
+              name="option"
+              hx-post="{% url 'catered-food' 2 %}"
+              hx-trigger="change"
+              hx-target="#fee"
+              onchange="updateCheckboxValue(this)"
+            />
+            <label class="form-check-label" for="{{date}}-lunch">
+              Lunch (R90)</label
+            >
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ date }}"
+              id="{{date}}-dinner"
+              name="option"
+              hx-post="{% url 'catered-food' 3 %}"
+              hx-trigger="change"
+              hx-target="#fee"
+              onchange="updateCheckboxValue(this)"
+            />
+            <label class="form-check-label" for="{{date}}-dinner">
+              Dinner (R120)
+            </label>
+          </div>
+        </div>
+        {% elif forloop.last %}
+        <div class="col">
+          <p class="mb-3 fw-bold">{{ date }}</p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ date }}"
+              id="{{date}}-breakfast"
+              name="option"
+              hx-post="{% url 'catered-food' 1 %}"
+              hx-trigger="change"
+              hx-target="#fee"
+              onchange="updateCheckboxValue(this)"
+            />
+            <label class="form-check-label" for="{{date}}-breakfast">
+              Breakfast (R70)
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ date }}"
+              id="{{date}}-lunch"
+              name="option"
+              hx-post="{% url 'catered-food' 2 %}"
+              hx-trigger="change"
+              hx-target="#fee"
+              onchange="updateCheckboxValue(this)"
+            />
+            <label class="form-check-label" for="{{date}}-lunch">
+              Lunch (R90)</label
+            >
+          </div>
+        </div>
+        {% else %}
+        <div class="col">
+          <p class="mb-3 fw-bold">{{ date }}</p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ date }}"
+              id="{{date}}-breakfast"
+              name="option"
+              hx-post="{% url 'catered-food' 1 %}"
+              hx-trigger="change"
+              hx-target="#fee"
+              onchange="updateCheckboxValue(this)"
+            />
+            <label class="form-check-label" for="{{date}}-breakfast">
+              Breakfast (R70)
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ date }}"
+              id="{{date}}-lunch"
+              name="option"
+              hx-post="{% url 'catered-food' 2 %}"
+              hx-trigger="change"
+              hx-target="#fee"
+              onchange="updateCheckboxValue(this)"
+            />
+            <label class="form-check-label" for="{{date}}-lunch">
+              Lunch (R90)</label
+            >
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ date }}"
+              id="{{date}}-dinner"
+              name="option"
+              hx-post="{% url 'catered-food' 3 %}"
+              hx-trigger="change"
+              hx-target="#fee"
+              onchange="updateCheckboxValue(this)"
+            />
+            <label class="form-check-label" for="{{date}}-dinner">
+              Dinner (R120)
+            </label>
+          </div>
+        </div>
+        {% endif %}
+        <!-- divider  -->
+        {% endfor %}
+      </div>
+      <button
+        type="submit"
+        name="confirm_booking"
+        class="btn btn-dark"
+        hx-post="{% url 'confirm-booking' %}"
+        hx-target="#ConfirmComponent"
+        onclick="conifirmBooking(event)"
+      >
+        next confirm booking
+      </button>
+    </form>
+  </div>
+  <div id="self" class="mt-5" style="display: none">
+    <h5>self-catering</h5>
+  </div>
+</div>
+{% else %}
+<h1>Not Available</h1>
+{% endif %}
+<!-- divider  -->
+{% endif %}
+
+<script>
+  function updateCheckboxValue(checkbox) {
+    var inputValue = checkbox.value;
+    var dateInput = document.getElementById("date-input");
+    var status = document.getElementById("status");
+
+    if (checkbox.checked) {
+      dateInput.value = inputValue;
+      status.value = "add";
+    } else {
+      dateInput.value = inputValue;
+      status.value = "remove";
+    }
+  }
+
+  function conifirmBooking() {
+    confirm = document.getElementById("confirm").value = "confirm";
+    document.getElementById("search_component").style.display = "None";
+    document.getElementById("ConfirmComponent").style.display = "Block";
+  }
+</script>

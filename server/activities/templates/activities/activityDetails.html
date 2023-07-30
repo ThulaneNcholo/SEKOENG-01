@@ -1,0 +1,134 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .back_btn {
+    color: var(--primary_color);
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .activity_description {
+    font-family: var(--paragraph-font);
+    color: var(--primary_color);
+  }
+
+  .activity_image {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .days_title {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .clock_icon {
+    font-size: 50px;
+    color: var(--primary_color);
+  }
+
+  .price_title {
+    color: var(--secondary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+  }
+
+  .activity_price {
+    font-size: 14px;
+  }
+</style>
+
+<div class="secondary_container container_padding">
+  <div class="container">
+    <i
+      class="bi bi-arrow-left-circle-fill back_btn"
+      onclick="history.back()"
+    ></i>
+    <div class="row mt-5">
+      <div class="col-12 col-md-6 mb-5">
+        <h1 class="fw-bold page_title mb-3">{{activity.title}}</h1>
+        {% if activity.count_description %}
+        <p class="activity_description">{{activity.count_description}}</p>
+        <i class="bi bi-clock clock_icon"></i>
+
+        <h1 class="days_title mt-5" id="demo"></h1>
+        <h1 class="days_title mt-3">till open.</h1>
+        <p id="event" style="display: none">{{activity.event_date}}</p>
+        <p id="demo"></p>
+        {% else %}
+        <p class="activity_description">{{activity.description}}</p>
+        <h2 class="fw-bold price_title">
+          R{{activity.price_per_person}}
+          <span class="activity_price">per person</span>
+        </h2>
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-6 mb-5">
+        <img src="{{activity.image.url}}" alt="" class="activity_image" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  eventDate = document.getElementById("event").innerHTML;
+  // Set the date we're counting down to
+  var countDownDate = new Date(eventDate).getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function () {
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("demo").innerHTML =
+      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+  }, 1000);
+</script>
+
+<!-- divider  -->
+{% endblock %}

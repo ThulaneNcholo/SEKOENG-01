@@ -1,0 +1,91 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+<style>
+  .back_button {
+    font-size: 22px;
+  }
+
+  .back_button:hover {
+    cursor: pointer;
+  }
+</style>
+
+<div class="container mt-5">
+  <a href="{% url 'details' room.id %}">
+    <i class="bi bi-arrow-left-square-fill back_button"></i>
+  </a>
+  <h1 class="my-3">{{room.title}}</h1>
+
+  <div id="search_component">
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="roomID" value="{{room.id}}" hidden="True" />
+      <div class="row">
+        <div class="col">
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="floatingInput"
+              name="checkIn"
+              placeholder="Check in"
+            />
+            <label for="floatingInput">Check in</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="floatingInput"
+              name="checkOut"
+              placeholder="Check out"
+            />
+            <label for="floatingInput">Check out</label>
+          </div>
+        </div>
+      </div>
+
+      <center>
+        <button
+          class="btn btn-dark my-5"
+          hx-post="{% url 'room-check' %}"
+          hx-target="#roomcheck"
+        >
+          Check availability
+        </button>
+      </center>
+    </form>
+
+    <div id="roomcheck">
+      <!-- ======= Room Check Results ======= -->
+      {% include 'partials/room_check.html' %}
+    </div>
+  </div>
+
+  <div id="ConfirmComponent" style="display: none">
+    <h1>Confirm component</h1>
+    {% include 'bookings/confirm.html' %}
+  </div>
+</div>
+
+<script>
+  function catered(event) {
+    event.preventDefault();
+    document.getElementById("catered").style.display = "block";
+    document.getElementById("self").style.display = "none";
+  }
+
+  function self(event) {
+    event.preventDefault();
+    document.getElementById("self").style.display = "block";
+    document.getElementById("catered").style.display = "none";
+  }
+</script>
+
+<!-- divider  -->
+{% endblock %}

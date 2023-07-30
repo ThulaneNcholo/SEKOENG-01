@@ -1,0 +1,111 @@
+<div id="confirmContainer">
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Confirm details</h3>
+    </div>
+    <div class="col">
+      <button onclick="showBooking(event)" class="btn btn-dark">
+        update details
+      </button>
+    </div>
+  </div>
+
+  <!-- ======= Table heading ======= -->
+  <div class="row mb-3">
+    <div class="col">
+      <h5 class="fw-bold">Date</h5>
+    </div>
+    <div class="col">
+      <h5 class="fw-bold">Breakfast</h5>
+    </div>
+    <div class="col">
+      <h5 class="fw-bold">Lunch</h5>
+    </div>
+    <div class="col">
+      <h5 class="fw-bold">Dinner</h5>
+    </div>
+  </div>
+
+  {% for data in booking_dates %}
+  <div class="row mb-3">
+    <div class="col">
+      <h6 class="fw-bold">{{data.date}}</h6>
+    </div>
+    <div class="col">
+      <h6>{{data.breakfast}}</h6>
+    </div>
+    <div class="col">
+      <h6>{{data.lunch}}</h6>
+    </div>
+    <div class="col">
+      <h6>{{data.dinner}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+  {% endfor %}
+
+  <!-- ======= Totals ======= -->
+  <div class="row mb-2 mt-5">
+    <div class="col">
+      <h6 class="fw-bold">Room Total</h6>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <h6 class="fw-bold">R{{room_total_fee}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+  <div class="row mb-2">
+    <div class="col">
+      <h6 class="fw-bold">Food Total</h6>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <h6 class="fw-bold">R{{food_total}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+  <div class="row mb-2">
+    <div class="col">
+      <h6 class="fw-bold">Grand Total</h6>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <h6 class="fw-bold">R{{grand_total}}</h6>
+    </div>
+  </div>
+  <hr class="my-3" />
+
+  <form method="POST">
+    {% csrf_token %}
+    <center>
+      <button
+        class="btn btn-outline-dark px-5 py-3 my-5"
+        hx-post="{% url 'user-details' %}"
+        hx-target="#userdetails"
+        onclick="detailsFunction(event)"
+        style="width: 50%"
+      >
+        Confirm booking information
+      </button>
+    </center>
+  </form>
+</div>
+
+<!-- ======= User Details ======= -->
+<div class="container mt-5" id="userdetails" style="display: none">
+  {% include 'roomPartials/userDetails.html' %}
+</div>
+
+<script>
+  function showBooking() {
+    document.getElementById("selectDates").style.display = "Block";
+    document.getElementById("detailsCheck").style.display = "None";
+  }
+
+  function detailsFunction() {
+    document.getElementById("userdetails").style.display = "Block";
+    document.getElementById("confirmContainer").style.display = "None";
+  }
+</script>
+
+<!-- <i class="bi bi-check-circle-fill"></i> 
+<i class="bi bi-dash-circle"></i>
+<i class="bi bi-x-circle"></i> -->

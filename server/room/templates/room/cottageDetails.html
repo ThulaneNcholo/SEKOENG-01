@@ -1,0 +1,361 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .back_icon {
+    color: var(--primary_color);
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .room_name {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+  }
+
+  .room_sub_title {
+    font-family: var(--paragraph-font);
+    color: var(--secondary_color);
+  }
+
+  .per_night {
+    font-size: 16px;
+  }
+
+  .btn_book {
+    background-color: var(--primary_color);
+    font-family: var(--paragraph-font);
+    color: var(--secondary-page-background);
+    font-weight: 700;
+  }
+
+  .facility_icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--primary_color);
+  }
+
+  .facility_title {
+    font-size: 18px;
+    color: var(--secondary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .offer_icon {
+    font-size: 20px;
+    color: var(--primary_color);
+  }
+
+  .main_image {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 50px;
+  }
+
+  .secondary_images {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  @media screen and (max-width: 576px) {
+    .main_image {
+      height: 300px;
+    }
+
+    .secondary_images {
+      height: 200px;
+    }
+  }
+
+  .original_price {
+    text-decoration: line-through;
+    color: var(--secondary-page-background);
+    font-family: var(--paragraph-font);
+  }
+
+  .package_container {
+    background-color: var(--primary_color);
+    border-color: var(--primary_color);
+    border-radius: 12px;
+  }
+
+  .package_title {
+    color: var(--secondary_color);
+  }
+
+  .house_icon {
+    color: var(--secondary-page-background);
+    font-size: 25px;
+  }
+
+  .text_color {
+    color: var(--secondary-page-background);
+  }
+
+  .package_price {
+    color: var(--secondary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+  }
+</style>
+
+<div class="secondary_container container_padding">
+  <div class="container">
+    <i
+      class="bi bi-arrow-left-circle-fill back_icon"
+      onclick="history.back()"
+    ></i>
+    <div class="row mt-5">
+      <div class="col-12 col-md-6 order-md-last mb-5">
+        <!-- ======= Room Offers ======= -->
+        <div class="row">
+          <div class="col-12">
+            <img
+              src="{{room.image_main.url}}"
+              alt=""
+              class="main_image shadow"
+            />
+          </div>
+          <div class="col-4">
+            <div>
+              <img
+                src="{{room.image1.url}}"
+                alt=""
+                class="secondary_images shadow"
+              />
+            </div>
+          </div>
+          <!-- end item  -->
+          <div class="col-4">
+            <div>
+              <img
+                src="{{room.image2.url}}"
+                alt=""
+                class="secondary_images shadow"
+              />
+            </div>
+          </div>
+          <!-- end item  -->
+          <div class="col-4">
+            <div>
+              <img
+                src="{{room.image3.url}}"
+                alt=""
+                class="secondary_images shadow"
+              />
+            </div>
+          </div>
+          <!-- end item  -->
+        </div>
+      </div>
+      <div class="col-12 col-md-6 room_details_lg order-md-first">
+        <h1 class="room_name">{{room.title}}</h1>
+        <p class="room_sub_title">{{room.description_sm}}</p>
+        <div class="my-4">
+          <h1 class="room_name">
+            R{{room.price}} <span class="per_night">/ per night</span>
+          </h1>
+        </div>
+        <a href="{% url 'room-booking' room.id %}">
+          <button class="btn btn_book mb-5">BOOK NOW</button>
+        </a>
+
+        <!-- Packages start  -->
+        <h3 class="room_name my-3 package_title">Packages</h3>
+        <div class="row">
+          {% for data in room.package.all %}
+          <div class="col-12 col-md-6 mb-3">
+            <div class="package_container p-3">
+              <i class="bi bi-house house_icon"></i>
+              <div class="d-flex text_color mt-4">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="mx-2">2 Nights</p>
+              </div>
+              <div class="d-flex text_color">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="mx-2">3 Days</p>
+              </div>
+              {% if data.breakfast == 'Yes'%}
+              <div class="d-flex text_color">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="mx-3">With Breakfast</p>
+              </div>
+              {% else %}
+              <div class="d-flex text_color">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="mx-3">Room Only</p>
+              </div>
+              {% endif %}
+              <div class="d-flex mt-3">
+                <h4 class="package_price">R{{data.discount_pirce}}</h4>
+                <p class="original_price mx-2" style="font-size: 13px">
+                  R{{data.price}}
+                </p>
+              </div>
+
+              <button type="button" class="btn btn-outline-light mt-3">
+                Book Now
+              </button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="row mt-5">
+          <div class="col">
+            <div>
+              <i class="bi bi-people-fill facility_icon"></i>
+              <h4 class="facility_title">{{room.people}} Guests</h4>
+            </div>
+          </div>
+          <!-- end item  -->
+          <div class="col">
+            <div>
+              <i class="fa fa-bed facility_icon" aria-hidden="true"></i>
+              <h4 class="facility_title">1 Bedroom</h4>
+            </div>
+          </div>
+          <!-- end item  -->
+          <div class="col">
+            <div>
+              <i class="fa fa-bath facility_icon" aria-hidden="true"></i>
+              <h4 class="facility_title">1 Bathroom</h4>
+            </div>
+          </div>
+          <!-- end item  -->
+        </div>
+
+        <p class="text-secondary mt-5">{{room.description}}</p>
+
+        <hr class="mt-5" />
+
+        <!-- ======= Room Offers ======= -->
+        <div class="mt-5">
+          <h1 class="room_name">What this room offers</h1>
+
+          <div class="row mt-5">
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="fa fa-cutlery offer_icon" aria-hidden="true"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">Kitchen</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="fa fa-wifi offer_icon" aria-hidden="true"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">Wifi</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="bi bi-paperclip offer_icon"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">Dedicated workspace</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="fa fa-television offer_icon" aria-hidden="true"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">TV with standard cable</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="bi bi-water offer_icon"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">Pool</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="bi bi-car-front-fill offer_icon"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">Free parking on premises</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="bi bi-shield-check offer_icon"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">24 hours security</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-6">
+              <div class="row mb-5">
+                <div class="col-2">
+                  <i class="bi bi-exclamation-diamond offer_icon"></i>
+                </div>
+                <div class="col">
+                  <p class="mb-0">No pets allowed</p>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

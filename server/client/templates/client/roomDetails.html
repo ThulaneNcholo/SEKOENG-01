@@ -1,0 +1,519 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .room_name {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .room_sub_title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--secondary_color);
+    font-family: var(--heading-font);
+  }
+
+  .flex_margin {
+    margin-right: 20px;
+  }
+
+  .per_night {
+    color: var(--headings_color);
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .availability_title {
+    font-size: 18px;
+    color: var(--headings_color);
+  }
+
+  .room_calendar {
+    font-size: 25px;
+    color: var(--headings_color);
+  }
+
+  .availability_conainer {
+    border-radius: 12px;
+  }
+
+  .facility_icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .facility_title {
+    font-size: 18px;
+    color: var(--headings_color);
+    font-weight: 600;
+  }
+
+  .offer_icon {
+    font-size: 20px;
+  }
+
+  /* Reviews style  */
+  .reviews_avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  .review_name {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--headings_color);
+  }
+
+  .review_date {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--secondary-color);
+  }
+
+  .review {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+      "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--headings_color);
+  }
+
+  /* Images style  */
+  .details_img1 {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 50px;
+  }
+
+  .secondary_images {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  /* Room specials */
+  .offer_image {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-right: 20px;
+  }
+
+  .offer_title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: var(--headings_color);
+  }
+
+  .offer_description {
+    font-size: 14px;
+    color: var(--secondary-color);
+  }
+</style>
+
+<div class="secondary_container container_padding">
+  <div class="container">
+    <!-- ======= Back Button ======= -->
+    <div class="mb-5">
+      <i class="bi bi-arrow-left-circle back_btn" onclick="history.back()"></i>
+    </div>
+
+    <div class="row">
+      <!-- ======= Room Content ======= -->
+      <div class="col">
+        <div class="room_details_lg">
+          <h1 class="room_name">{{room.title}}</h1>
+          <p class="room_sub_title">{{room.description_sm}}</p>
+          <div class="my-4">
+            <h1 class="room_name">
+              R{{room.price}} <span class="per_night">/ per night</span>
+            </h1>
+          </div>
+
+          <div>
+            <div class="row border border-2 p-3 availability_conainer">
+              <div class="col d-flex justify-content-start">
+                <h3 class="availability_title">Check Availability</h3>
+              </div>
+              <div class="col d-flex justify-content-end">
+                <i class="fa fa-calendar room_calendar" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          <!-- end availability  -->
+
+          <div class="row mt-5">
+            <div class="col">
+              <div>
+                <i class="bi bi-people-fill facility_icon"></i>
+                <h4 class="facility_title">{{room.people}} Guests</h4>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col">
+              <div>
+                <i class="fa fa-bed facility_icon" aria-hidden="true"></i>
+                <h4 class="facility_title">1 Bedroom</h4>
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col">
+              <div>
+                <i class="fa fa-bath facility_icon" aria-hidden="true"></i>
+                <h4 class="facility_title">1 Bathroom</h4>
+              </div>
+            </div>
+            <!-- end item  -->
+          </div>
+
+          <p class="text-secondary mt-5">
+            {{room.description}}
+            <!-- <span class="fw-bold text-black">Show more</span>  -->
+          </p>
+
+          <hr class="mt-5" />
+
+          <!-- ======= Room Offers ======= -->
+          <div class="mt-5">
+            <h1 class="room_name">What this room offers</h1>
+
+            <div class="row mt-4">
+              <div class="col-6">
+                <div class="row mb-3">
+                  <div class="col-2">
+                    <i class="fa fa-cutlery offer_icon" aria-hidden="true"></i>
+                  </div>
+                  <div class="col">
+                    <p class="mb-0">Kitchen</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end item  -->
+              <div class="col-6">
+                <div class="row mb-3">
+                  <div class="col-2">
+                    <i class="fa fa-wifi offer_icon" aria-hidden="true"></i>
+                  </div>
+                  <div class="col">
+                    <p class="mb-0">Wifi</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end item  -->
+              <div class="col-6">
+                <div class="row mb-3">
+                  <div class="col-2">
+                    <i class="bi bi-paperclip offer_icon"></i>
+                  </div>
+                  <div class="col">
+                    <p class="mb-0">Dedicated workspace</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end item  -->
+              <div class="col-6">
+                <div class="row mb-3">
+                  <div class="col-2">
+                    <i
+                      class="fa fa-television offer_icon"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <div class="col">
+                    <p class="mb-0">TV with standard cable</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end item  -->
+              <div class="col-6">
+                <div class="row mb-3">
+                  <div class="col-2">
+                    <i class="bi bi-water offer_icon"></i>
+                  </div>
+                  <div class="col">
+                    <p class="mb-0">Pool</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end item  -->
+              <div class="col-6">
+                <div class="row mb-3">
+                  <div class="col-2">
+                    <i class="bi bi-car-front-fill offer_icon"></i>
+                  </div>
+                  <div class="col">
+                    <p class="mb-0">Free parking on premises</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end item  -->
+            </div>
+            <button type="button" class="btn btn-outline-dark mt-4">
+              Show all amenities
+            </button>
+          </div>
+
+          <hr class="mt-5" />
+          <!-- ======= Rating ======= -->
+          <div class="mt-5">
+            <div class="row">
+              <div class="col">
+                <div class="d-flex">
+                  <i class="bi bi-star-fill" style="margin-right: 10px"></i>
+                  <h1 class="room_name">4.8</h1>
+                </div>
+              </div>
+              <div class="col">
+                <div class="d-flex">
+                  <h1 class="room_name" style="font-weight: 400 !important">
+                    55 Reviews
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ======= Reviews ======= -->
+          <div class="mt-5">
+            <div class="review_item mb-5">
+              <div class="d-flex mb-4">
+                <img
+                  src="{% static '/images/person.svg' %}"
+                  alt=""
+                  class="reviews_avatar"
+                />
+                <div>
+                  <p class="review_name mb-1">Brent Doe</p>
+                  <p class="review_date mb-0">June 2023</p>
+                </div>
+              </div>
+              <p class="review">
+                Everything as described and shown in the pictures. Amazing
+                peaceful view to sit and relax! Thank you for an enjoyable
+                weekend. Already planning next visit!
+              </p>
+            </div>
+            <!-- end item  -->
+            <div class="review_item mb-5">
+              <div class="d-flex mb-4">
+                <img
+                  src="{% static '/images/person.svg' %}"
+                  alt=""
+                  class="reviews_avatar"
+                />
+                <div>
+                  <p class="review_name mb-1">Brent Doe</p>
+                  <p class="review_date mb-0">June 2023</p>
+                </div>
+              </div>
+              <p class="review">
+                Everything as described and shown in the pictures. Amazing
+                peaceful view to sit and relax! Thank you for an enjoyable
+                weekend. Already planning next visit!
+              </p>
+            </div>
+            <!-- end item  -->
+            <div class="review_item mb-5">
+              <div class="d-flex mb-4">
+                <img
+                  src="{% static '/images/person.svg' %}"
+                  alt=""
+                  class="reviews_avatar"
+                />
+                <div>
+                  <p class="review_name mb-1">Brent Doe</p>
+                  <p class="review_date mb-0">June 2023</p>
+                </div>
+              </div>
+              <p class="review">
+                Everything as described and shown in the pictures. Amazing
+                peaceful view to sit and relax! Thank you for an enjoyable
+                weekend. Already planning next visit!
+              </p>
+            </div>
+            <!-- end item  -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ======= Room Images ======= -->
+      <div class="col">
+        <div>
+          <img
+            src="{{room.image_main.url}}"
+            alt=""
+            class="details_img1 shadow"
+          />
+
+          <div class="row">
+            <div class="col-4">
+              <div>
+                <img
+                  src="{{room.image1.url}}"
+                  alt=""
+                  class="secondary_images shadow"
+                />
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-4">
+              <div>
+                <img
+                  src="{{room.image2.url}}"
+                  alt=""
+                  class="secondary_images shadow"
+                />
+              </div>
+            </div>
+            <!-- end item  -->
+            <div class="col-4">
+              <div>
+                <img
+                  src="{{room.image3.url}}"
+                  alt=""
+                  class="secondary_images shadow"
+                />
+              </div>
+            </div>
+            <!-- end item  -->
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-outline-dark mt-5 shadow shadow-sm"
+          >
+            See all images
+          </button>
+
+          <center>
+            <a href="{% url 'bookings' room.id %}">
+              <button class="btn btn-Book px-5 py-3 my-5">BOOK NOW</button>
+            </a>
+
+            <a href="{% url 'select-date' room.id %}">
+              <button class="btn btn-dark" onclick="generateUUID()">
+                Book Now
+              </button>
+            </a>
+
+            <a href="{% url 'availability-check' room.id %}">
+              <button class="btn btn-dark" onclick="generateUUID()">
+                BOOK ROOM NOW
+              </button>
+            </a>
+          </center>
+
+          <div class="mt-5">
+            <h1 class="room_name mb-5">Room Specials</h1>
+            <div class="d-flex">
+              <img
+                src="{% static '/images/package.jpg' %}"
+                alt=""
+                class="offer_image shadow shadow-sm"
+              />
+              <div>
+                <h4 class="offer_title">Special Package 1</h4>
+                <p class="offer_description">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Maiores voluptatibus quod expedita inventore quis iusto odit
+                  quidem aliquid nulla optio neque similique, nihil cumque
+                  debitis atque perspiciatis? Et, voluptate corporis!
+                </p>
+                <div class="d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="margin-right: 20px"
+                  >
+                    View Offer
+                  </button>
+                  <button class="btn btn-dark">Buy Offer</button>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+            <hr class="my-5" />
+            <div class="d-flex">
+              <img
+                src="{% static '/images/package.jpg' %}"
+                alt=""
+                class="offer_image shadow shadow-sm"
+              />
+              <div>
+                <h4 class="offer_title">Special Package 2</h4>
+                <p class="offer_description">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Maiores voluptatibus quod expedita inventore quis iusto odit
+                  quidem aliquid nulla optio neque similique, nihil cumque
+                  debitis atque perspiciatis? Et, voluptate corporis!
+                </p>
+                <div class="d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="margin-right: 20px"
+                  >
+                    View Offer
+                  </button>
+                  <button class="btn btn-dark">Buy Offer</button>
+                </div>
+              </div>
+            </div>
+            <!-- end item  -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function generateUUID() {
+    // Generate a UUID using the uuid library
+    const uuid = uuidv4();
+    // Save the UUID to localStorage
+    localStorage.setItem("uuid", uuid);
+  }
+</script>
+
+<!-- divider  -->
+{% endblock %}

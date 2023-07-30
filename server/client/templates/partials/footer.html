@@ -1,0 +1,87 @@
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+
+<style>
+  .footer_logo {
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .footer_container {
+    background-color: #ef962e;
+  }
+
+  .footer_text {
+    color: #183f3c;
+  }
+</style>
+
+<div class="footer_container">
+  <div class="container">
+    <footer class="row row-cols-5 py-5 mt-5 border-top">
+      <div class="col-12 col-md mb-3">
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 link-dark text-decoration-none"
+        >
+          <img
+            src="{% static '/images/logo_farm.jpeg' %}"
+            alt=""
+            class="footer_logo mb-4"
+          />
+        </a>
+      </div>
+
+      <div class="col-12 col-md mb-3"></div>
+
+      <div class="col-12 col-md mb-3">
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold">Home</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold"
+              >Accommodation</a
+            >
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold">Activities</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md mb-3">
+        <h5></h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold">Facilities</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold">Events</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold">Gallary</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md mb-3">
+        <h5></h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold">About us</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 footer_text fw-bold">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <center>
+      <p class="text-center mb-0 footer_text pb-5">© 2021 Company, Inc</p>
+    </center>
+  </div>
+</div>

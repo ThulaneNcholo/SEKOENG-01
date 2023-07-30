@@ -1,0 +1,63 @@
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .activity_card {
+    background-color: var(--primary_color);
+  }
+
+  .activity_name {
+    font-family: var(--heading-font);
+    color: var(--secondary-page-background);
+    letter-spacing: 0.5px;
+  }
+
+  .scroll_titles,
+  .scroll_description,
+  .scroll_secondary_title {
+    overflow-wrap: break-word;
+  }
+</style>
+<div class="container">
+  <h3 class="fw-bold page_title mb-4">Explore</h3>
+  <div class="d-flex justify-content-end mb-3">
+    <div>
+      <i class="bi bi-arrow-left nav_arrows"></i>
+      <i class="bi bi-arrow-right nav_arrows"></i>
+    </div>
+  </div>
+  <div class="scroll_container">
+    {% for data in activities %}
+    <a href="{% url 'activities-details' data.id %}">
+      <div
+        class="scroll_component p-3"
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('{{ data.image.url }}'); background-size: cover;"
+      >
+        <h4 class="scroll_titles">{{ data.title }}</h4>
+        <p class="scroll_description">
+          {% with words=data.description|wordcount %}
+          <!-- divider  -->
+          {% if words > 15 %}
+          <!-- divider  -->
+          {{ data.description|slice:":100" }}... {% else %}
+          <!-- divider  -->
+          {{ data.description }} {% endif %}
+          <!-- divider  -->
+          {% endwith %}
+        </p>
+        <h6 class="scroll_secondary_title">{{ data.category }}</h6>
+      </div>
+    </a>
+
+    {% endfor %}
+    <!-- end scroll item  -->
+  </div>
+</div>

@@ -1,0 +1,256 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .primary_container {
+    background-color: var(--primary_color);
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .about_logo {
+    height: 500px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .about_titles {
+    color: var(--secondary-page-background);
+    font-family: var(--heading-font);
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+
+  .heading_paragraph {
+    color: var(--secondary-page-background);
+    font-family: var(--paragraph-font);
+  }
+
+  .sub_titles {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+
+  .sub_description {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .about_banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("{% static '/images/aboutBanner.jpeg' %}");
+    width: 100%;
+    background-size: cover;
+    height: 600px;
+    background-position: center;
+  }
+
+  .banner_tags {
+    font-family: var(--paragraph-font);
+    color: var(--secondary-page-background);
+    font-size: 18px;
+  }
+
+  .banner_title {
+    font-family: var(--heading-font);
+    color: var(--secondary-page-background);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .nav_arrows {
+    color: var(--primary_color);
+    font-size: 30px;
+  }
+
+  .scroll_container {
+    width: 100%; /* Adjust the width as needed */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent cards from wrapping */
+  }
+
+  .scroll_container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+  }
+
+  .scroll_component {
+    height: 300px;
+    width: 300px;
+    border-radius: 12px;
+    display: inline-block; /* Display cards in a row */
+    margin-right: 10px; /* Add space between cards */
+    margin-bottom: 30px;
+    white-space: normal;
+  }
+
+  .scroll_image {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+</style>
+
+<div class="primary_container py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <img
+          src="{% static '/images/logo_farm.jpeg' %}"
+          alt=""
+          class="about_logo mb-4"
+        />
+      </div>
+      <div class="col-12 col-md-6 d-flex align-items-center">
+        <div>
+          <h1 class="about_titles mb-3">
+            Enjoy a luxury experience and best moment
+          </h1>
+          <p class="heading_paragraph">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum
+            minus, numquam soluta possimus facere eius!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="secondary_container"
+  style="padding-top: 150px; padding-bottom: 150px"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <h1 class="sub_titles" style="width: 80%">
+          Embark on an Enchanting Adventure.
+        </h1>
+      </div>
+      <div class="col-12 col-md-6">
+        <p class="sub_description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit
+          deserunt provident eveniet, doloremque labore reiciendis iste amet.
+          Hic non necessitatibus dolor nihil voluptatem ad magni accusantium
+          dicta fugit quasi!
+        </p>
+        <p class="sub_description">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste quidem
+          impedit nostrum ipsa eius itaque laudantium, asperiores nihil, id
+          maxime eveniet, ipsam in obcaecati architecto? Maxime sapiente quo
+          repellendus amet?
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about_banner about_banner d-flex align-items-center">
+  <div class="container">
+    <center>
+      <div>
+        <h1 class="banner_title mb-3">its a prefect gateway for friends</h1>
+        <h1 class="banner_title mb-5">family as well as corporate.</h1>
+        <p class="banner_tags">
+          your ultimate gateway to extraordinary adventures, perfect for
+          cherished moments with friends and family, and ideal for invigorating
+          corporate retreats. Nestled in the heart of the breathtaking
+          Wilderness, our exquisite lodge offers an unparalleled blend of
+          excitement and relaxation
+        </p>
+      </div>
+      <button type="button" class="btn btn-light py-3 px-5 my-4 border-3">
+        BOOK NOW
+      </button>
+    </center>
+  </div>
+</div>
+
+<div class="secondary_container">
+  <div class="container" style="padding-top: 100px; padding-bottom: 100px">
+    <h1 class="sub_titles">Stay with us</h1>
+    <p class="sub_description">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus eos
+      numquam quisquam rem neque quas.
+    </p>
+    <div class="d-flex justify-content-end">
+      <div>
+        <i class="bi bi-arrow-left nav_arrows"></i>
+        <i class="bi bi-arrow-right nav_arrows"></i>
+      </div>
+    </div>
+
+    <div class="scroll_container mt-5">
+      <div class="scroll_component">
+        <img
+          src="{% static '/images/gallary_01.jpeg' %}"
+          alt=""
+          class="scroll_image"
+        />
+      </div>
+      <div class="scroll_component">
+        <img
+          src="{% static '/images/gallary_02.jpeg' %}"
+          alt=""
+          class="scroll_image"
+        />
+      </div>
+      <div class="scroll_component">
+        <img
+          src="{% static '/images/gallary_03.jpeg' %}"
+          alt=""
+          class="scroll_image"
+        />
+      </div>
+      <div class="scroll_component">
+        <img
+          src="{% static '/images/gallary_04.jpeg' %}"
+          alt=""
+          class="scroll_image"
+        />
+      </div>
+      <div class="scroll_component">
+        <img
+          src="{% static '/images/gallary_05.jpeg' %}"
+          alt=""
+          class="scroll_image"
+        />
+      </div>
+      <div class="scroll_component">
+        <img
+          src="{% static '/images/gallary_6.jpeg' %}"
+          alt=""
+          class="scroll_image"
+        />
+      </div>
+      <div class="scroll_component">
+        <img
+          src="{% static '/images/gallary_7.jpeg' %}"
+          alt=""
+          class="scroll_image"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

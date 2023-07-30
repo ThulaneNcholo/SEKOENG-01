@@ -1,0 +1,178 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .booking_card {
+    background-color: var(--secondary-page-background);
+    border-radius: 12px;
+    width: 500px;
+    max-width: 500px !important;
+  }
+
+  .price {
+    color: var(--secondary_color);
+  }
+
+  .price_title {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .night_title {
+    font-size: 18px;
+    color: var(--primary_color);
+  }
+
+  .btn_reserve {
+    background-color: var(--primary_color);
+    color: var(--secondary-page-background);
+    font-family: var(--paragraph-font);
+  }
+
+  .back_icon {
+    font-size: 22px;
+    color: var(--secondary-page-background);
+  }
+
+  /* partial style  */
+  .form_fonts {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .edit_btn {
+    border-color: var(--primary_color);
+    color: var(--primary_color);
+  }
+
+  .btn_width {
+    width: 100%;
+  }
+
+  .pararaph_text {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .form_fonts {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .primary_container {
+    background-color: var(--primary_color);
+  }
+</style>
+
+<div class="primary_container container_padding">
+  <div class="container">
+    <i
+      class="bi bi-arrow-left-circle-fill back_icon"
+      onclick="history.back()"
+    ></i>
+    <div class="d-flex justify-content-center">
+      <div class="booking_card p-3 mt-5">
+        <h1 class="price_title mb-5">
+          <span class="price">R{{room.price}}</span>
+          <span class="night_title">per night</span>
+        </h1>
+
+        <!-- Form submit  -->
+        <div id="reserveDate">
+          <form method="POST">
+            {% csrf_token %}
+
+            <div class="row">
+              <div class="col">
+                <div class="form-floating mb-3 form_container">
+                  <input
+                    type="date"
+                    class="form-control form_container"
+                    id="floatingInput"
+                    placeholder="check in"
+                    name="checkin"
+                  />
+                  <label for="floatingInput">Check in</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating mb-3 form_container">
+                  <input
+                    type="date"
+                    class="form-control form_container"
+                    id="floatingInput"
+                    placeholder="check out"
+                    name="checkout"
+                  />
+                  <label for="floatingInput">Check out</label>
+                </div>
+              </div>
+            </div>
+            <select
+              class="form-select py-3 form_container"
+              aria-label="Default select example"
+              name="guest"
+            >
+              {% with num=room.people %}
+              <!-- divider  -->
+              {% for i in ""|rjust:num %}
+              <option value="{{ forloop.counter }}">
+                {{ forloop.counter }} Guest
+              </option>
+              {% endfor %}
+              <!-- divder  -->
+              {% endwith %}
+            </select>
+
+            <center>
+              <button
+                type="submit"
+                class="btn btn_reserve mt-5 px-5 py-3"
+                hx-post="{% url 'reserve' room.id%}"
+                hx-target="#reserve"
+                onclick="collectUserInfo(event)"
+              >
+                Reserve now
+              </button>
+            </center>
+          </form>
+          <hr class="my-5" />
+        </div>
+        <div id="reserve" style="display: none">
+          {% include 'partials/cottageInfo.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function collectUserInfo() {
+    document.getElementById("reserve").style.display = "Block";
+    document.getElementById("reserveDate").style.display = "None";
+  }
+</script>
+
+<!-- divider  -->
+{% endblock %}

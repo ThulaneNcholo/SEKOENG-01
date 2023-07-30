@@ -1,0 +1,114 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .events_subtitle {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+  }
+
+  .events_title {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .events_description {
+    font-family: var(--paragraph-font);
+    color: var(--primary_color);
+  }
+
+  .events_image {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  /* card style  */
+  .card_title {
+    font-weight: 700;
+    font-family: var(--heading-font);
+    color: var(--primary_color);
+    letter-spacing: 0.5px;
+  }
+
+  .card_description {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .btn_book {
+    border-color: var(--primary_color);
+    color: var(--primary_color);
+    font-weight: 700;
+    font-family: var(--heading-font);
+  }
+
+  @media screen and (max-width: 576px) {
+    .events_image {
+      height: 300px;
+    }
+  }
+</style>
+
+<div class="secondary_container container_padding">
+  <div class="container">
+    <h3 class="events_subtitle mb-5">Events</h3>
+    <h1 class="events_title mb-3">We’ll make it happen</h1>
+    <h5 class="events_description">
+      family reunion, a corporate retreat, or a special celebration, our lodge
+      provides the perfect setting for bonding
+    </h5>
+
+    <!-- list start  -->
+    {% for data in events%}
+    <div class="row mt-5">
+      <div class="col-12 col-md-6 mb-5">
+        <img
+          src="{{data.image.url}}"
+          alt="Sekoeng events"
+          class="events_image"
+        />
+      </div>
+      <div
+        class="col-12 col-md-6 mb-5 d-flex align-items-center justify-content-center"
+      >
+        <div class="text-center">
+          <h2 class="card_title mb-5">{{data.title}}</h2>
+          <p class="card_description">{{data.description}}</p>
+          <button type="button" class="btn btn_book px-5 py-3">Contact</button>
+        </div>
+      </div>
+    </div>
+
+    {% endfor%}
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

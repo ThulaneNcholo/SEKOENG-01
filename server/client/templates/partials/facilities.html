@@ -1,0 +1,268 @@
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .service_banner1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.358)),
+      url("{% static '/images/service_banner.png' %}");
+    height: 500px;
+    background-size: cover;
+  }
+
+  .service_banner2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.358)),
+      url("{% static '/images/service_banner1.png' %}");
+    height: 500px;
+    background-size: cover;
+  }
+
+  .service_title {
+    font-weight: 600;
+    color: white;
+  }
+
+  .service_description {
+    color: white;
+  }
+
+  .facility_image {
+    height: 300px;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .facility_icon {
+    font-size: 50px;
+    margin-top: 60px;
+    color: #bebebe;
+  }
+
+  /* New Facility Styling  */
+  .facility_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .facility_component_image {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+</style>
+
+<!-- <div class="container-fluid" style="margin-top: 100px">
+  <div class="text-center mb-5">
+    <h3 class="headings mb-4">Facilities & Services</h3>
+    <p class="text-secondary">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut facere,
+      consequuntur doloremque atque facilis maiores earum nihil. Exercitationem,
+      natus hic!
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6 service_banner1 p-3">
+      <h3 class="service_title">Heading One</h3>
+      <p class="service_description">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quibusdam
+        ratione nemo sint consequuntur, aliquam, molestiae pariatur tenetur
+        accusamus perspiciatis fuga, laborum corrupti ad corporis! Illo nam vel
+        dolore perferendis.
+      </p>
+    </div>
+    <div class="col-12 col-md-6 service_banner2 p-3">
+      <h3 class="service_title">Heading One</h3>
+      <p class="service_description">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quibusdam
+        ratione nemo sint consequuntur, aliquam, molestiae pariatur tenetur
+        accusamus perspiciatis fuga, laborum corrupti ad corporis! Illo nam vel
+        dolore perferendis.
+      </p>
+    </div>
+  </div>
+</div> -->
+
+<div class="container my-5">
+  <div class="row mb-5">
+    <div class="col">
+      <h3 class="headings mb-4">Enjoy complete and best quality facilities</h3>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button class="btn btn-dark">See more</button>
+    </div>
+  </div>
+  <hr />
+  <div class="row mt-5">
+    <div class="col-12 col-md-6 mb-3">
+      <img
+        src="{% static '/images/poolarea.png' %}"
+        alt=""
+        class="facility_image"
+      />
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="row">
+        <div class="col-2">
+          <h4 class="fw-bold">01</h4>
+        </div>
+        <div class="col">
+          <h4 class="fw-bold mb-4">Pool Area</h4>
+          <p class="text-secondary">
+            Dive into Tranquility - Our Sparkling Pool Area offers a refreshing
+            escape amidst the wilderness. Lounge by the crystal-clear waters,
+            bask in the sun's warm embrace, and unwind in a serene setting that
+            harmoniously blends nature's beauty with modern comfort."
+          </p>
+          <i class="bi bi-arrow-right facility_icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <!-- end item  -->
+  <div class="row mt-5">
+    <div class="col-12 col-md-6 mb-3">
+      <img
+        src="{% static '/images/bararea.png' %}"
+        alt=""
+        class="facility_image"
+      />
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="row">
+        <div class="col-2">
+          <h4 class="fw-bold">02</h4>
+        </div>
+        <div class="col">
+          <h4 class="fw-bold mb-4">Bar Area</h4>
+          <p class="text-secondary">
+            Cheers to Adventure - Our Bar Area is a spirited oasis where
+            thrilling escapades meet delightful libations. Raise a glass to the
+            adventures of the day, socialize with fellow explorers, and enjoy a
+            wide array of drinks expertly crafted to ignite your senses in an
+            ambiance that exudes both rustic charm and modern allure.
+          </p>
+          <i class="bi bi-arrow-right facility_icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <!-- end item  -->
+  <div class="row mt-5">
+    <div class="col-12 col-md-6 mb-3">
+      <img
+        src="{% static '/images/foodarea3.jpeg' %}"
+        alt=""
+        class="facility_image"
+      />
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="row">
+        <div class="col-2">
+          <h4 class="fw-bold">03</h4>
+        </div>
+        <div class="col">
+          <h4 class="fw-bold mb-4">Restaurant</h4>
+          <p class="text-secondary">
+            Savor Gastronomic Delights - Our Food Area is a culinary haven,
+            where the finest flavors from around the world converge. Indulge in
+            delectable dishes meticulously crafted to appease your taste buds,
+            served in a welcoming atmosphere that celebrates the joy of good
+            food and great company."
+          </p>
+          <i class="bi bi-arrow-right facility_icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <!-- end item  -->
+  <div class="row mt-5">
+    <div class="col-12 col-md-6 mb-3">
+      <img
+        src="{% static '/images/foodarea4.jpeg' %}"
+        alt=""
+        class="facility_image"
+      />
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="row">
+        <div class="col-2">
+          <h4 class="fw-bold">04</h4>
+        </div>
+        <div class="col">
+          <h4 class="fw-bold mb-4">Outdoor Restaurant</h4>
+          <p class="text-secondary">
+            Feast Under the Stars - Experience the magic of dining al fresco in
+            our enchanting Outdoor Food Area. Nestled amidst the lush
+            wilderness, relish the harmony of nature as you savor gourmet
+            delights under a starlit canopy, creating unforgettable memories
+            with every bite."
+          </p>
+          <i class="bi bi-arrow-right facility_icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <!-- end item  -->
+  <div class="row mt-5">
+    <div class="col-12 col-md-6 mb-3">
+      <img
+        src="{% static '/images/braaiarea.png' %}"
+        alt=""
+        class="facility_image"
+      />
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="row">
+        <div class="col-2">
+          <h4 class="fw-bold">05</h4>
+        </div>
+        <div class="col">
+          <h4 class="fw-bold mb-4">Safari Grill Haven</h4>
+          <p class="text-secondary">
+            our sizzling braai area where flames dance to infuse delectable
+            meats and tantalizing aromas. Nestled amidst the untamed wilderness,
+            gather around the crackling fire, embrace the spirit of camaraderie,
+            and savor a true South African tradition of braai. Indulge in
+            mouthwatering grilled delicacies and let the essence of the wild
+            flavors awaken your senses in this unforgettable outdoor culinary
+            experience.
+          </p>
+          <i class="bi bi-arrow-right facility_icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <!-- end item  -->
+</div>
+
+<div class="facility_container py-5">
+  <div class="container-fluid my-5">
+    <div class="row">
+      <div class="col">
+        <img
+          src="{% static '/images/ncholoFarm.png' %}"
+          alt=""
+          class="facility_component_image"
+        />
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</div>

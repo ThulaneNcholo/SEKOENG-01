@@ -1,0 +1,57 @@
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .camping_banner {
+    padding-top: 150px;
+    padding-bottom: 150px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("{% static '/images/camping_banner.png' %}");
+  }
+
+  .camping_title {
+    color: var(--secondary-page-background);
+    font-weight: 700;
+    font-family: var(--heading-font);
+    font-size: 60px;
+  }
+
+  @media screen and (max-width: 576px) {
+    .camping_title {
+      font-size: 40px;
+    }
+  }
+</style>
+
+<div class="camping_banner">
+  <div>
+    <div>
+      <center>
+        <h1 class="camping_title">Relax and Enjoy</h1>
+        <h1 class="camping_title">your Holiday</h1>
+        <p class="text-white">SEKOENG CULLIAN LUXURY COTTAGES</p>
+        <button
+          type="button"
+          class="btn btn-outline-light camping_btn py-3 px-5 fw-bold mt-3"
+        >
+          Book Now
+        </button>
+      </center>
+    </div>
+  </div>
+</div>

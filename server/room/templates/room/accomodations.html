@@ -1,0 +1,191 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .primary_container {
+    background-color: var(--primary_color);
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .accomodation_title_page {
+    color: var(--secondary-page-background);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .accomodation_subtitle {
+    color: var(--secondary-page-background);
+    font-family: var(--heading-font);
+  }
+
+  .accomodation_secondary_sub {
+    color: var(--secondary-page-background);
+    font-family: var(--paragraph-font);
+  }
+
+  /* Accommodation style  */
+
+  .Accommodation_img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .accomodation_title {
+    color: var(--secondary-page-background);
+    font-weight: 600;
+    font-size: 16px;
+    font-family: var(--heading-font);
+  }
+
+  .accomodation_description {
+    color: var(--secondary-color);
+    font-size: 14px;
+  }
+
+  .per_night {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  /* Swiper  */
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .accomodation_container {
+    background-color: #183f3c;
+  }
+
+  .price_style {
+    color: #ef962e !important;
+  }
+
+  @media screen and (max-width: 576px) {
+    .hero_title {
+      font-size: 40px;
+    }
+
+    .page_heading {
+      padding: 0px 20px;
+    }
+  }
+</style>
+
+<div class="primary_container container_padding">
+  <div class="container">
+    <h3 class="accomodation_subtitle mb-5">Accomodation</h3>
+    <h1 class="accomodation_title_page mb-3">Stay with us</h1>
+    <h5 class="accomodation_secondary_sub">
+      A stay at Sekoeng Cullinan Luxury Cottages can be a truly unforgettable
+      experience.
+    </h5>
+  </div>
+
+  <!-- Accomodations cards  -->
+  <div class="container" style="margin-top: 100px">
+    <div class="page_heading">
+      <div class="row">
+        {% for data in rooms %}
+        <div class="col-12 col-md-6 col-lg-3 mb-5">
+          <a href="{% url 'details-view' data.id %}">
+            <div class="accomodation_card">
+              <!-- Swiper -->
+              <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img
+                      src="{{data.image_main.url}}"
+                      alt="Ncholo Farm Room"
+                      class="Accommodation_img shadow shadow-sm mb-3"
+                    />
+                  </div>
+                  <div class="swiper-slide">
+                    <img
+                      src="{{data.image1.url}}"
+                      alt="Ncholo Farm Room"
+                      class="Accommodation_img shadow shadow-sm mb-3"
+                    />
+                  </div>
+                  <div class="swiper-slide">
+                    <img
+                      src="{{data.image2.url}}"
+                      alt="Ncholo Farm Room"
+                      class="Accommodation_img shadow shadow-sm mb-3"
+                    />
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="row">
+                <div class="col d-flex justify-content-start">
+                  <h5 class="accomodation_title">{{data.title}}</h5>
+                </div>
+                <div class="col-3 d-flex justify-content-end">
+                  <div class="d-flex">
+                    <i class="bi bi-star-fill mx-1 text-light"></i>
+                    <p class="mb-0 text-light">4.9</p>
+                  </div>
+                </div>
+              </div>
+              <p class="accomodation_description mb-0 text-light">
+                {{data.description_sm}}
+              </p>
+              <p class="accomodation_description fw-bold mb-2 text-light">
+                {{data.people}} people sharing
+              </p>
+              <h5 class="price_style fw-bold">
+                R{{data.price}} <span class="per_night">per night</span>
+              </h5>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        <!-- end item  -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

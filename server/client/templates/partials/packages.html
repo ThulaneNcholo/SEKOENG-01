@@ -1,0 +1,71 @@
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+
+<style>
+  /* #305A39  */
+  /* #8A6550  */
+  /* #C7A085  */
+
+  .package_image {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .package_content_container {
+    background-color: white;
+  }
+
+  .package_title {
+    color: var(--headings_color);
+    font-weight: 600;
+    line-height: 19px;
+  }
+
+  .package_description {
+    font-size: 14px;
+  }
+</style>
+
+<div class="container" style="margin-top: 100px">
+  <div class="text-center mb-5">
+    <h3 class="headings mb-4">Special Offers</h3>
+    <p class="text-secondary">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut facere,
+      consequuntur doloremque atque facilis maiores earum nihil. Exercitationem,
+      natus hic!
+    </p>
+  </div>
+
+  <div class="row">
+    {% for data in packages %}
+    <div class="col-12 col-md-4" style="margin-top: 120px">
+      <div
+        style="
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <img src="{{data.image_main.url}}" alt="" class="package_image" />
+        <div
+          class="package_content_container px-3 py-4 shadow shadow-sm"
+          style="position: absolute; bottom: -5rem; right: 3rem; left: 3rem"
+        >
+          <center>
+            <h3 class="package_title mb-3">{{data.title}}</h3>
+            <p class="package_description text-secondary">
+              {{data.description_sm}}
+            </p>
+            <h4 class="package_title">R{{data.price}}</h4>
+            <button class="btn btn-Book mt-3 shadow shadow-sm">BOOK NOW</button>
+          </center>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- end item  -->
+  </div>
+</div>

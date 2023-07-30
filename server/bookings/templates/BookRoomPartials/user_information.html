@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col">
+    <h3>User Informaiton</h3>
+  </div>
+  <div class="col">
+    <button class="btn btn-dark" onclick="showConfirmaiton(event)">
+      confirmation
+    </button>
+  </div>
+</div>
+
+<div class="row mt-5 mb-3">
+  <div class="col">
+    <h5>Total Due</h5>
+  </div>
+  <div class="col">
+    <h5>R{{grand_total}}</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Booking Reference"
+        readonly
+        name="referance"
+        value="#{{referance}}"
+      />
+      <label for="floatingInput">Booking Reference</label>
+    </div>
+  </div>
+  <!-- end input item  -->
+  <div class="col-12 col-md-6">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="First Name"
+        name="firstName"
+        required
+      />
+      <label for="floatingInput">First Name</label>
+    </div>
+  </div>
+  <!-- end input item  -->
+  <div class="col-12 col-md-6">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Last Name"
+        name="lastName"
+        required
+      />
+      <label for="floatingInput">Last Name</label>
+    </div>
+  </div>
+  <!-- end input item  -->
+  <div class="col-12 col-md-6">
+    <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Phone"
+        name="phone"
+        required
+      />
+      <label for="floatingInput">Phone</label>
+    </div>
+  </div>
+  <!-- end input item  -->
+  <div class="col-12 col-md-6">
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="name@example.com"
+        name="email"
+        required
+      />
+      <label for="floatingInput">Email address</label>
+    </div>
+  </div>
+  <!-- end input item  -->
+</div>
+
+<script>
+  function showConfirmaiton() {
+    document.getElementById("user-information").style.display = "None";
+    document.getElementById("confirmationContainer").style.display = "Block";
+  }
+</script>

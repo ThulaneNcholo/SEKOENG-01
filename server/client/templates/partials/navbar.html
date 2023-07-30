@@ -1,0 +1,210 @@
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .secondary_heading {
+    color: var(--secondary_color);
+  }
+
+  .navbar {
+    background-color: var(--secondary-page-background) !important;
+  }
+
+  .navbar-brand {
+    color: var(--primary_color) !important;
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  .nav-link {
+    color: var(--primary_color) !important;
+    font-family: var(--paragraph-font) !important;
+  }
+
+  .offcanvas_container {
+    background-color: var(--primary_color);
+  }
+
+  .offcanvas-title {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    letter-spacing: 0.5px;
+  }
+
+  .number_style {
+    color: lightgray;
+    font-family: var(--heading-font);
+    margin-right: 10px;
+  }
+
+  .nav_title {
+    color: var(--secondary-page-background);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.1px;
+  }
+
+  .address_p {
+    font-family: var(--paragraph-font);
+    color: var(--secondary-page-background);
+    font-weight: 700;
+  }
+
+  .address_link {
+    font-family: var(--paragraph-font);
+    color: var(--secondary_color);
+  }
+
+  .header_background {
+    background-color: var(--secondary-page-background);
+  }
+
+  .navbar-toggler {
+    background-color: var(--primary_color);
+  }
+
+  .menu_bar {
+    color: var(--secondary-page-background);
+    font-size: 30px;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}">SEKOENG</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="bi bi-list menu_bar"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'index' %}"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'Accommodation' %}">Accommodation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'activities' %}">Activities</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'facilities' %}">Facilities</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'events' %}">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'gallary' %}">Gallary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div
+  class="offcanvas offcanvas-start header_background"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+      SEKOENG LUXURY <span class="secondary_heading">COTTAGES</span>
+    </h5>
+    <button
+      type="button"
+      class="btn-close text-reset bg-light"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body offcanvas_container py-5">
+    <a href="{% url 'index' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">01</p>
+        <h1 class="nav_title">Home</h1>
+      </div>
+    </a>
+
+    <a href="{% url 'Accommodation' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">02</p>
+        <h1 class="nav_title">Accomodation</h1>
+      </div>
+    </a>
+
+    <a href="{% url 'activities' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">03</p>
+        <h1 class="nav_title">Activities</h1>
+      </div>
+    </a>
+
+    <a href="{% url 'facilities' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">04</p>
+        <h1 class="nav_title">Facilities</h1>
+      </div>
+    </a>
+
+    <a href="{% url 'events' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">05</p>
+        <h1 class="nav_title">Events</h1>
+      </div>
+    </a>
+
+    <a href="{% url 'gallary' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">06</p>
+        <h1 class="nav_title">Gallary</h1>
+      </div>
+    </a>
+
+    <a href="{% url 'about' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">07</p>
+        <h1 class="nav_title">About us</h1>
+      </div>
+    </a>
+
+    <a href="{% url 'contact' %}">
+      <div class="d-flex mb-4">
+        <p class="number_style">08</p>
+        <h1 class="nav_title">Contact</h1>
+      </div>
+    </a>
+
+    <div class="mt-5">
+      <p class="address_p">Find us</p>
+      <p class="address_link">Brandbach Gravel Road Brandbach Cullinan, 1000</p>
+    </div>
+  </div>
+</div>

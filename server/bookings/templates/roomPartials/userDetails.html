@@ -1,0 +1,128 @@
+<div id="userform">
+  <div class="row">
+    <div class="col">
+      <h3>User Details</h3>
+    </div>
+    <div class="col">
+      <button class="btn btn-dark" onclick="confirmationDetails(event)">
+        show confirmation
+      </button>
+    </div>
+  </div>
+
+  <!-- ======= Collect User information ======= -->
+  <div class="row mt-5 mb-3">
+    <div class="col">
+      <h5>Total Due</h5>
+    </div>
+    <div class="col">
+      <h5>R{{grand_total}}</h5>
+    </div>
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Booking Reference"
+            readonly
+            name="referance"
+            value="#{{referance}}"
+          />
+          <label for="floatingInput">Booking Reference</label>
+        </div>
+      </div>
+      <!-- end input item  -->
+      <div class="col-12 col-md-6">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="First Name"
+            name="firstName"
+            required
+          />
+          <label for="floatingInput">First Name</label>
+        </div>
+      </div>
+      <!-- end input item  -->
+      <div class="col-12 col-md-6">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Last Name"
+            name="lastName"
+            required
+          />
+          <label for="floatingInput">Last Name</label>
+        </div>
+      </div>
+      <!-- end input item  -->
+      <div class="col-12 col-md-6">
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Phone"
+            name="phone"
+            required
+          />
+          <label for="floatingInput">Phone</label>
+        </div>
+      </div>
+      <!-- end input item  -->
+      <div class="col-12 col-md-6">
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+            name="email"
+            required
+          />
+          <label for="floatingInput">Email address</label>
+        </div>
+      </div>
+      <!-- end input item  -->
+    </div>
+
+    <center>
+      <button
+        type="submit"
+        class="btn btn-dark my-4 py-3"
+        hx-post="{% url 'complete-booking' %}"
+        hx-target="#successBooking"
+        onclick="completeFunc(event)"
+        style="width: 50%"
+      >
+        Complete Booking
+      </button>
+    </center>
+  </form>
+</div>
+
+<!-- ======= Complete Booking Data ======= -->
+<div class="container mt-5" id="successBooking" style="display: none">
+  {% include 'roomPartials/complete.html' %}
+</div>
+
+<script>
+  function confirmationDetails() {
+    document.getElementById("userdetails").style.display = "None";
+    document.getElementById("confirmContainer").style.display = "Block";
+  }
+
+  function completeFunc() {
+    document.getElementById("userform").style.display = "None";
+    document.getElementById("successBooking").style.display = "Block";
+  }
+</script>

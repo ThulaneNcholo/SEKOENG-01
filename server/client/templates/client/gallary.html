@@ -1,0 +1,218 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .secondary_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .secondary_titles {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    letter-spacing: 0.5;
+  }
+
+  .secondary_sub_titles {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+  }
+
+  .main_image {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .secondary_images {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .gallary_description {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+</style>
+
+<div class="secondary_container">
+  <div class="container container_padding">
+    <h3 class="secondary_sub_titles">Gallary</h3>
+    <h1 class="secondary_titles mb-5">Explore Sekoeng gallery</h1>
+
+    <!-- component start  -->
+    <div class="mt-5">
+      <h3 class="secondary_titles mb-4">The Villa</h3>
+      <p class="gallary_description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea repudiandae
+        consequatur modi tempore ratione facilis sit optio quisquam doloribus
+        adipisci.
+      </p>
+      <div class="row mb-4">
+        <div class="col-12 col-md-6">
+          <img
+            src="{% static '/images/gallary_02.jpeg' %}"
+            alt=""
+            class="main_image"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/gallary_01.jpeg' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/gallary_05.jpeg' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/gallary11.jpeg' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/gallary_6.jpeg' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- component end  -->
+
+    <!-- component start  -->
+    <div class="mt-5">
+      <h3 class="secondary_titles mb-4">Stay</h3>
+      <p class="gallary_description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea repudiandae
+        consequatur modi tempore ratione facilis sit optio quisquam doloribus
+        adipisci.
+      </p>
+      <div class="row mb-4">
+        <div class="col-12 col-md-6">
+          <img
+            src="{% static '/images/romm_image001.png' %}"
+            alt=""
+            class="main_image"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/room_image002.png' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/room_image003.png' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/room_image004.jpg' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/room_image005.png' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- component end  -->
+
+    <!-- component start  -->
+    <div class="mt-5">
+      <h3 class="secondary_titles mb-4">Restaurant</h3>
+      <p class="gallary_description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea repudiandae
+        consequatur modi tempore ratione facilis sit optio quisquam doloribus
+        adipisci.
+      </p>
+      <div class="row mb-4">
+        <div class="col-12 col-md-6">
+          <img
+            src="{% static '/images/food_image01.jpeg' %}"
+            alt=""
+            class="main_image"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/room_image002.png' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/food_image02.jpeg' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/food_image03.png' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+        <div class="col-6 col-md mb-3">
+          <img
+            src="{% static '/images/food_image05.png' %}"
+            alt=""
+            class="secondary_images"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- component end  -->
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

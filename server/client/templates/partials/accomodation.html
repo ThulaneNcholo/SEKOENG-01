@@ -36,9 +36,16 @@
   }
 
   .per_night {
-    color: white;
+    color: var(--primary_color);
     font-weight: 400;
     font-size: 16px;
+  }
+
+  .cross_pirce {
+    color: var(--primary_color);
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: line-through;
   }
 
   /* Swiper  */
@@ -124,9 +131,20 @@
           <p class="accomodation_description fw-bold mb-2 text-secondary">
             {{data.people}} people sharing
           </p>
+          {% if week_day == 'weekday' %}
           <h5 class="price_style fw-bold">
-            R{{data.price}} <span class="per_night">per night</span>
+            R{{data.room_prices.room_only}}
+            <span class="per_night">per night</span>
           </h5>
+          {% else %}
+          <h5 class="price_style fw-bold">
+            R{{data.room_prices.room_weekend}}
+            <span class="cross_pirce"
+              >R{{data.room_prices.room_original_price}}</span
+            >
+            <span class="per_night">per night</span>
+          </h5>
+          {% endif %}
         </div>
       </a>
     </div>

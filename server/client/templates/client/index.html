@@ -230,59 +230,132 @@
     color: var(--primary_color);
     font-size: 23px;
   }
+
+  .page_background {
+    background-color: var(--secondary-page-background);
+  }
+
+  .blog_images {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .blog_description {
+    color: var(--primary_color) !important;
+  }
+
+  .blog_btn {
+    background-color: var(--primary_color);
+    color: var(--secondary-page-background);
+    border-radius: 12px;
+  }
+
+  .blog_divider {
+    background-color: var(--primary_color);
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .modal_bg {
+    background-color: var(--secondary-page-background);
+  }
+
+  .modal_title {
+    font-family: var(--heading-font);
+    color: var(--primary_color);
+    font-weight: 700;
+    font-size: 18px;
+  }
 </style>
 
-<!-- ======= Header Image ======= -->
-<div>
-  <div class="main_component">
-    <div class="text-center">
-      <img
-        src="{% static '/images/logo_farm.jpeg' %}"
-        alt=""
-        class="logo mb-4"
-      />
-      <h1 class="hero_title mb-4">SEKOENG</h1>
-      <h2 class="hero_sub_title mb-0">CULLIAN</h2>
-      <h2 class="hero_sub_title mb-0">LUXURY COTTAGES</h2>
-      <a href="{% url 'Accommodation' %}">
-        <button
-          type="button"
-          class="btn btn-outline-light border border-3 px-5 py-2 mt-5"
-        >
-          Accommodation
-        </button>
-      </a>
+<div class="page_background">
+  <!-- ======= Header Image ======= -->
+  <div>
+    <div class="main_component">
+      <div class="text-center">
+        <img
+          src="{% static '/images/logo_farm.jpeg' %}"
+          alt=""
+          class="logo mb-4"
+        />
+        <h1 class="hero_title mb-4">SEKGOENG</h1>
+        <h2 class="hero_sub_title mb-0">CULLIAN</h2>
+        <h2 class="hero_sub_title mb-0">LUXURY COTTAGES</h2>
+        <a href="{% url 'Accommodation' %}">
+          <button
+            type="button"
+            class="btn btn-outline-light border border-3 px-5 py-2 mt-5"
+          >
+            Accommodation
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-0">
+    <div class="col-3 shadow px-5 d-none d-lg-block">
+      <h3 class="fw-bold page_title mb-3" style="padding-top: 90px">
+        Our Blog
+      </h3>
+      <h5 class="fw-bold page_title mb-4">Stay up to date with us.</h5>
+      {% for data in blog %}
+      <div style="margin-bottom: 100px">
+        <img
+          src="{{data.image.url}}"
+          alt="SEKGOENG blog"
+          class="blog_images mb-5"
+        />
+        <h3 class="fw-bold page_title mb-4" style="font-size: 18px">
+          {{data.title}}
+        </h3>
+        <p class="events_description mb-5 blog_description">
+          {{data.description}}
+        </p>
+        <a href="{% url 'event-details' data.id %}">
+          <button class="btn blog_btn">Read More</button>
+        </a>
+      </div>
+      <center>
+        <hr class="blog_divider" />
+      </center>
+      {% endfor %}
+    </div>
+    <div class="col-12 col-lg-9 px-0">
+      <div class="scroll_component_container">
+        <!-- ======= Sroll Component ======= -->
+        {% include 'partials/activityComponent.html' %}
+      </div>
+
+      <!-- ======= About Lodge ======= -->
+      {% include 'partials/about_us.html' %}
+
+      <!-- ======= Accomodation ======= -->
+      <div class="accomodation_container py-5">
+        <center>
+          <h1 class="fw-bold page_title">Accommodation</h1>
+          <h3 class="secondary_title mb-0">
+            Retreat to Tranquil Luxury - Your Gateway to Wild Serenity!
+          </h3>
+        </center>
+        <div class="page_heading">
+          {% include 'partials/accomodation.html' %}
+        </div>
+      </div>
+
+      <!-- ======= Facilities And Services ======= -->
+      {% include 'partials/facilityPartial.html' %}
+
+      <!-- ======= camping banner ======= -->
+      {% include 'partials/camping_banner.html' %}
+
+      <!-- ======= Special events ======= -->
+      <div>{% include 'partials/events.html' %}</div>
     </div>
   </div>
 </div>
-
-<div class="scroll_component_container">
-  <!-- ======= Sroll Component ======= -->
-  {% include 'partials/activityComponent.html' %}
-</div>
-
-<!-- ======= About Lodge ======= -->
-{% include 'partials/about_us.html' %}
-
-<!-- ======= Accomodation ======= -->
-<div class="accomodation_container py-5">
-  <center>
-    <h1 class="fw-bold page_title">Accommodation</h1>
-    <h3 class="secondary_title mb-0">
-      Retreat to Tranquil Luxury - Your Gateway to Wild Serenity!
-    </h3>
-  </center>
-  <div class="page_heading">{% include 'partials/accomodation.html' %}</div>
-</div>
-
-<!-- ======= Facilities And Services ======= -->
-{% include 'partials/facilityPartial.html' %}
-
-<!-- ======= camping banner ======= -->
-{% include 'partials/camping_banner.html' %}
-
-<!-- ======= Special events ======= -->
-<div>{% include 'partials/events.html' %}</div>
 
 <!-- divider  -->
 {% endblock %}

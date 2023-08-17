@@ -21,7 +21,7 @@
   }
 
   .lodge_image {
-    height: 500px;
+    height: 100%;
     width: 100%;
     object-fit: cover;
     /* border-radius: 12px;  */
@@ -74,9 +74,18 @@
       border-bottom-left-radius: 0px;
     }
   }
+
+  .border_style {
+    border-radius: 12px;
+  }
+
+  .lodge_span_name {
+    color: var(--secondary_color);
+    font-weight: 700;
+  }
 </style>
 
-<div class="about_container">
+<div class="about_container border_style">
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6 about_content px-0">
@@ -89,15 +98,25 @@
             />
             <h3 class="about_us_title">Our Story</h3>
             <p class="about_paragraph">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quae
-              ullam saepe sint nesciunt debitis accusantium in porro nemo
-              repellendus hic pariatur, maxime optio amet provident voluptate
-              quidem, nisi non!
+              Embark on Nature's Canvas: Welcome to
+              <span class="lodge_span_name"
+                >SEKGOENG CULLINAN LUXURY COTTAGES</span
+              >
+              , a haven where the legacy of South African history intertwines
+              with the vibrant rhythms of modern life. Nestled in the embrace of
+              Brandbach, Cullinan, our lodge is a tribute to the past, a
+              sanctuary for wildlife, and an invitation to bask in the
+              tranquility of the Highveld's sprawling landscapes. Join us on a
+              journey where the echoes of pioneers resonate amidst lush flora
+              and cozy retreats, a testament to our commitment to preserving
+              nature's masterpiece.
             </p>
 
-            <button class="btn btn btn-outline-dark btn_read_more mt-4">
-              read more
-            </button>
+            <a href="{% url 'about' %}">
+              <button class="btn btn btn-outline-dark btn_read_more mt-4">
+                read more
+              </button>
+            </a>
           </center>
         </div>
       </div>

@@ -51,7 +51,7 @@
 </div>
 
 <div>
-  <form method="POST">
+  <form method="POST" autocomplete="off">
     {% csrf_token %}
     <div class="form-floating mb-3">
       <input
@@ -59,6 +59,8 @@
         class="form-control"
         id="floatingInput"
         placeholder="First Name"
+        name="firstName"
+        required
       />
       <label class="form_fonts" for="floatingInput">First Name</label>
     </div>
@@ -69,6 +71,8 @@
         class="form-control"
         id="floatingInput"
         placeholder="Last Name"
+        name="lastName"
+        required
       />
       <label class="form_fonts" for="floatingInput">Last Name</label>
     </div>
@@ -79,6 +83,8 @@
         class="form-control"
         id="floatingInput"
         placeholder="Phone"
+        name="phone"
+        required
       />
       <label class="form_fonts" for="floatingInput">Phone</label>
     </div>
@@ -88,6 +94,8 @@
         class="form-control"
         id="floatingInput"
         placeholder="name@example.com"
+        name="email"
+        required
       />
       <label class="form_fonts" for="floatingInput">Email address</label>
     </div>
@@ -95,11 +103,13 @@
     <!-- end input item  -->
     <div class="row">
       <div class="col-12 col-md-6 mb-3">
-        <a href="{% url 'message' %}">
-          <button class="btn btn_reserve py-3 btn_width order-md-last">
-            Submit Revervation
-          </button>
-        </a>
+        <button
+          type="submit"
+          name="submit_reservation"
+          class="btn btn_reserve py-3 btn_width order-md-last"
+        >
+          Submit Reservation
+        </button>
       </div>
       <div class="col-12 col-md-6 mb-3 order-md-first">
         <button
@@ -112,11 +122,6 @@
       </div>
     </div>
   </form>
-  <a href="{% url 'message' %}">
-    <button class="btn btn_reserve py-3 btn_width order-md-last">
-      Submit Revervation
-    </button>
-  </a>
 </div>
 
 <script>

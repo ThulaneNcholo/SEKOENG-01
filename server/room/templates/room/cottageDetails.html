@@ -46,6 +46,13 @@
     font-size: 16px;
   }
 
+  .cross_out {
+    font-size: 16px;
+    text-decoration: line-through;
+    font-weight: 700;
+    color: var(--secondary_color);
+  }
+
   .btn_book {
     background-color: var(--primary_color);
     font-family: var(--paragraph-font);
@@ -180,55 +187,24 @@
         <h1 class="room_name">{{room.title}}</h1>
         <p class="room_sub_title">{{room.description_sm}}</p>
         <div class="my-4">
+          {% if week_day == 'weekday' %}
           <h1 class="room_name">
-            R{{room.price}} <span class="per_night">/ per night</span>
+            R{{room.room_prices.room_only}}
+            <span class="per_night">/ per night</span>
           </h1>
+          {% else %}
+          <h1 class="room_name">
+            R{{room.room_prices.room_weekend}}
+            <span class="cross_out"
+              >R{{room.room_prices.room_original_price}}</span
+            >
+            <span class="per_night">/ per night</span>
+          </h1>
+          {% endif %}
         </div>
         <a href="{% url 'room-booking' room.id %}">
           <button class="btn btn_book mb-5">BOOK NOW</button>
         </a>
-
-        <!-- Packages start  -->
-        <h3 class="room_name my-3 package_title">Packages</h3>
-        <div class="row">
-          {% for data in room.package.all %}
-          <div class="col-12 col-md-6 mb-3">
-            <div class="package_container p-3">
-              <i class="bi bi-house house_icon"></i>
-              <div class="d-flex text_color mt-4">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="mx-2">2 Nights</p>
-              </div>
-              <div class="d-flex text_color">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="mx-2">3 Days</p>
-              </div>
-              {% if data.breakfast == 'Yes'%}
-              <div class="d-flex text_color">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="mx-3">With Breakfast</p>
-              </div>
-              {% else %}
-              <div class="d-flex text_color">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="mx-3">Room Only</p>
-              </div>
-              {% endif %}
-              <div class="d-flex mt-3">
-                <h4 class="package_price">R{{data.discount_pirce}}</h4>
-                <p class="original_price mx-2" style="font-size: 13px">
-                  R{{data.price}}
-                </p>
-              </div>
-
-              <button type="button" class="btn btn-outline-light mt-3">
-                Book Now
-              </button>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-
         <div class="row mt-5">
           <div class="col">
             <div>
@@ -240,14 +216,14 @@
           <div class="col">
             <div>
               <i class="fa fa-bed facility_icon" aria-hidden="true"></i>
-              <h4 class="facility_title">1 Bedroom</h4>
+              <h4 class="facility_title">{{room.bedrooms}} Bedroom</h4>
             </div>
           </div>
           <!-- end item  -->
           <div class="col">
             <div>
               <i class="fa fa-bath facility_icon" aria-hidden="true"></i>
-              <h4 class="facility_title">1 Bathroom</h4>
+              <h4 class="facility_title">{{room.bathrooms}} Bathroom</h4>
             </div>
           </div>
           <!-- end item  -->

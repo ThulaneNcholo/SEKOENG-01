@@ -69,6 +69,13 @@
     font-size: 16px;
   }
 
+  .cross_pirce {
+    color: var(--secondary-page-background);
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: line-through;
+  }
+
   /* Swiper  */
   .swiper {
     width: 100%;
@@ -117,7 +124,7 @@
     <h3 class="accomodation_subtitle mb-5">Accomodation</h3>
     <h1 class="accomodation_title_page mb-3">Stay with us</h1>
     <h5 class="accomodation_secondary_sub">
-      A stay at Sekoeng Cullinan Luxury Cottages can be a truly unforgettable
+      A stay at Sekgoeng Cullinan Luxury Cottages can be a truly unforgettable
       experience.
     </h5>
   </div>
@@ -174,9 +181,20 @@
               <p class="accomodation_description fw-bold mb-2 text-light">
                 {{data.people}} people sharing
               </p>
+              {% if week_day == 'weekday' %}
               <h5 class="price_style fw-bold">
-                R{{data.price}} <span class="per_night">per night</span>
+                R{{data.room_prices.room_only}}
+                <span class="per_night">per night</span>
               </h5>
+              {% else %}
+              <h5 class="price_style fw-bold">
+                R{{data.room_prices.room_weekend}}
+                <span class="cross_pirce"
+                  >R{{data.room_prices.room_original_price}}</span
+                >
+                <span class="per_night">per night</span>
+              </h5>
+              {% endif %}
             </div>
           </a>
         </div>

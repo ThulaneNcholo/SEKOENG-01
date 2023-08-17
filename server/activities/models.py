@@ -11,7 +11,7 @@ class ActivitiesModel(models.Model):
     category = models.CharField(max_length=50, null=True, blank=True)
     image = models.ImageField(
         null=True, blank=True, upload_to='static/images')
-    count_down_date = models.DateTimeField(null=True)
+    count_down_date = models.DateTimeField(null=True,blank=True)
     count_description = models.TextField(blank=True)
     event_date = models.DateField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)

@@ -1,0 +1,85 @@
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .event_page_title {
+    color: var(--secondary_color);
+  }
+
+  .events_description {
+    color: var(--secondary-page-background);
+  }
+
+  .blog_event_btn {
+    background-color: var(--secondary_color);
+    color: var(--primary_color);
+  }
+
+  .blog_images {
+    height: 200px;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .card_container {
+    background-color: var(--secondary-page-background);
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .card_image {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .card_title {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .event_text {
+    color: var(--primary_color);
+    font-family: var(--paragraph-font);
+  }
+
+  .btn_view_event {
+    background-color: var(--secondary_color);
+    color: var(--primary_color);
+    border-radius: 12px;
+  }
+</style>
+
+<div class="row">
+  {% for data in blog %}
+  <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center mb-4">
+    <div class="card_container p-3">
+      <img
+        src="{{data.image.url}}"
+        alt="Sekgoeng event image"
+        class="img-fluid card_image"
+      />
+      <h6 class="card_title">{{data.title}}</h6>
+      <p class="event_text mb-3">{{data.description}}</p>
+      <center>
+        <a href="{% url 'event-details' data.id %}">
+          <button class="btn btn_view_event">Read More</button>
+        </a>
+      </center>
+    </div>
+  </div>
+  {% endfor %}
+</div>

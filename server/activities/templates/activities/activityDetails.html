@@ -84,10 +84,13 @@
         <p id="demo"></p>
         {% else %}
         <p class="activity_description">{{activity.description}}</p>
+        {% if activity.price_per_person %}
         <h2 class="fw-bold price_title">
           R{{activity.price_per_person}}
           <span class="activity_price">per person</span>
         </h2>
+        {% endif %}
+        <!-- divider  -->
         {% endif %}
       </div>
       <div class="col-12 col-md-6 mb-5">

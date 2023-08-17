@@ -1,0 +1,78 @@
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .breakfast_title {
+    font-family: var(--heading-font);
+    font-size: 18px;
+    color: var(--primary_color);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .breakfast_price {
+    color: var(--primary_color);
+    font-weight: 700;
+    font-family: var(--paragraph-font);
+  }
+
+  .price_style {
+    color: var(--secondary_color) !important;
+  }
+</style>
+
+{% if date_list %}
+<h1 class="breakfast_title mt-5 mb-3">Breakfast, {{room.people}} Guests</h1>
+
+<div class="row">
+  <!-- ======= Week day prices ======= -->
+  {% for date in weekdays %}
+  <div class="col-12 mb-3">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="{{date}}"
+        id="flexCheckDefault"
+        name="breakfast_value"
+      />
+      <label class="form-check-label" for="flexCheckDefault">
+        {{date}},
+        <span class="breakfast_price"
+          >Price : <span class="price_style">R{{weekday_breakfast}}</span>
+        </span></label
+      >
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- ======= Weekend prices ======= -->
+  {% for date in weekends %}
+  <div class="col-12 mb-3">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="{{date}}"
+        id="flexCheckDefault"
+        name="breakfast_value"
+      />
+      <label class="form-check-label" for="flexCheckDefault">
+        {{date}},
+        <span class="breakfast_price"
+          >Price : <span class="price_style">R{{weekend_breakfast}}</span>
+        </span></label
+      >
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

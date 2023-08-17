@@ -109,7 +109,7 @@
   }
 
   .events_image {
-    height: 600px;
+    height: 400px;
     width: 100%;
     object-fit: cover;
     border-radius: 12px;
@@ -134,93 +134,6 @@
   }
 </style>
 
-<!-- <div class="container-fluid my-5">
-  <center>
-    <h3 class="headings mb-5">Events</h3>
-  </center>
-  <div class="row">
-    <div class="col-12 col-md-6 mb-4">
-      <div class="event01 p-3">
-        <div class="content-section" style="position: absolute; bottom: 0px">
-          <h3 class="text-white fw-bold event_titles">
-            Unite, Celebrate, and Embrace Nature's Embrace!
-          </h3>
-          <p class="text-white">
-            family reunion, a corporate retreat, or a special celebration, our
-            lodge provides the perfect setting for bonding, laughter, and
-            forging unforgettable connections amidst the untamed beauty of the
-            wild.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <div class="event02 mb-4 p-3">
-            <div
-              class="content-section"
-              style="position: absolute; bottom: 0px"
-            >
-              <h3 class="text-white fw-bold event_titles">
-                Enchanted Wilderness Weddings
-              </h3>
-              <p class="text-white">
-                Love's unforgettable journey! Vows amid breathtaking landscapes
-                and romance.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="eventContainer1 mb-4 p-3">
-            <div
-              class="content-section"
-              style="position: absolute; bottom: 0px"
-            >
-              <h3 class="text-white fw-bold event_titles">Rev Up & Roar</h3>
-              <p class="text-white">
-                A thrilling car show amidst nature's majesty! Classic beauties
-                and roaring engines.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="eventContainer2 mb-4 p-3">
-            <div
-              class="content-section"
-              style="position: absolute; bottom: 0px"
-            >
-              <h3 class="text-white fw-bold event_titles">Wild Gatherings</h3>
-              <p class="text-white">
-                Unite, celebrate, and embrace nature's embrace! Bond, laugh, and
-                connect in untamed beauty.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="eventContainer3 mb-4 p-3">
-            <div
-              class="content-section"
-              style="position: absolute; bottom: 0px"
-            >
-              <h3 class="text-white fw-bold event_titles">Event Bookings</h3>
-              <h3 class="text-white fw-bold event_titles">067 086 1616</h3>
-              <p class="text-white" style="font-size: 12px">
-                Unlock unforgettable experiences - Book your dream event amidst
-                untamed landscapes and luxurious comfort. Celebrate life's
-                milestones in the embrace of nature's haven.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div class="event_container py-5">
   <center>
     <h1 class="fw-bold headint_titles">Events</h1>
@@ -234,7 +147,7 @@
         <div>
           <img
             src="{{data.image.url}}"
-            alt="SEKOENG CULLIAN LUXURY COTTAGES events"
+            alt="SEKGOENG CULLIAN LUXURY COTTAGES events"
             class="events_image"
           />
           <div class="mt-5">
@@ -253,11 +166,13 @@
   </div>
 
   <center>
-    <button
-      type="button"
-      class="btn btn-outline-dark book_event_btn py-3 fw-bold my-5"
-    >
-      BOOK NOW
-    </button>
+    <a href="{% url 'contact' %}">
+      <button
+        type="button"
+        class="btn btn-outline-dark book_event_btn py-3 fw-bold my-5"
+      >
+        BOOK NOW
+      </button>
+    </a>
   </center>
 </div>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .body-fonts {
+      font-family: "Poppins", sans-serif !important;
+    }
+
+    #customers td,
+    #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+      background-color: #ddd;
+    }
+
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04aa6d;
+      color: white;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .sub-headings {
+        font-size: 25px !important;
+      }
+    }
+  </style>
+  <body class="body-fonts">
+    <!-- Hero Content start  -->
+    <section>
+      <p
+        style="
+          font-size: 35px;
+          /* font-weight: 700; */
+          letter-spacing: 2px;
+          color: #183f3c;
+        "
+      >
+        Hi {{name}}.
+      </p>
+      <hr />
+      <p
+        style="
+          font-size: 25px;
+          /* font-weight: 700; */
+          letter-spacing: 2px;
+          color: #183f3c;
+        "
+      >
+        SEKGOENG , CULLIAN LUXURY COTTAGES
+      </p>
+      <p
+        class="sub-headings"
+        style="
+          font-size: 20px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          color: #ef962e;
+        "
+      >
+        Thank you for choosing our lodge for your stay! We are looking forward
+        to hosting you soon.
+      </p>
+    </section>
+
+    <!-- Main Content start  -->
+    <section>
+      <div
+        style="
+          width: 100%;
+          background-color: #183f3c;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 5px;
+        "
+      >
+        <p style="color: white; font-weight: 700; font-size: 18px">
+          SEKGOENG RESERVATION
+        </p>
+      </div>
+      <table id="customers" style="width: 100%">
+        <tr style="margin-bottom: 20px">
+          <td>Reference :</td>
+          <td style="font-weight: 700">#{{ref}}</td>
+        </tr>
+        <tr style="margin-bottom: 20px">
+          <td>Room :</td>
+          <td style="font-weight: 700">{{room_name}}</td>
+        </tr>
+        <tr style="margin-bottom: 20px">
+          <td>Guests :</td>
+          <td style="font-weight: 700">{{guests}}</td>
+        </tr>
+        <tr style="margin-bottom: 20px">
+          <td>Check-in :</td>
+          <td style="font-weight: 700">{{checkIn}}</td>
+        </tr>
+        <tr style="margin-bottom: 20px">
+          <td>Check-out :</td>
+          <td style="font-weight: 700">{{checkOut}}</td>
+        </tr>
+        {% if food_list %}
+        {% for data in food_list %}
+        <tr style="margin-bottom: 20px">
+          <td>{{data}}-breakfast:</td>
+          <td style="font-weight: 700">Yes</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <tr style="margin-bottom: 20px">
+          <td style="font-weight: 700">Total :</td>
+          <td style="font-weight: 700">R{{total}}</td>
+        </tr>
+      </table>
+    </section>
+
+    <section style="margin-top: 50px">
+      <p style="font-size: 20px; font-weight: 700">Important</p>
+      <p style="font-size: 18px">
+        To secure your reservation, kindly make the payment for the total amount
+        to the provided account details, including your reservation reference.
+        Your booking will be confirmed upon payment receipt.
+      </p>
+      <p style="font-size: 18px">
+        Please send your payment confirmation to: sekgoeng@gmail.com.
+      </p>
+      <p style="font-size: 18px; font-weight: 700; margin-top: 10px">
+        Account Details:
+      </p>
+      <p>Bank: [Bank Name]</p>
+      <p>Account Number: [Account Number]</p>
+      <p>Account Name: [Account Name]</p>
+      <p>Reference: [Your Reservation Reference]</p>
+    </section>
+
+    <section style="margin-top: 50px">
+      <p style="font-size: 18px">
+        If you have any questions or need assistance, please don't hesitate to
+        contact our support team.
+      </p>
+      <p style="font-size: 18px">011 725 73637</p>
+      <p style="font-size: 18px">Sincerely</p>
+      <p style="margin-top: 40px; font-size: 18px">
+        Thank you for your trust in SEKGOENG CULLIAN LUXURY COTTAGES.
+      </p>
+    </section>
+    <div style="height: 50px; width: 100%"></div>
+  </body>
+</html>

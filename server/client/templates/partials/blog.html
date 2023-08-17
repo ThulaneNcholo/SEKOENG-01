@@ -1,0 +1,39 @@
+<style>
+  .sm_blog_images {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+</style>
+
+<div class="d-block d-lg-none container mt-5">
+  <h3 class="fw-bold page_title mb-3">Our Blog</h3>
+  <h5 class="fw-bold page_title mb-4">Stay up to date with us.</h5>
+  <div class="row mb-5">
+    {% for data in events %}
+    <div class="col-12 col-md-6 col-lg-4 mb-5">
+      <div>
+        <img
+          src="{{data.image.url}}"
+          alt="SEKGOENG blog"
+          class="sm_blog_images mb-5"
+        />
+        <h3 class="fw-bold page_title mb-4" style="font-size: 18px">
+          {{data.title}}
+        </h3>
+        <p class="events_description mb-5 blog_description">
+          {{data.description}}
+        </p>
+        <button
+          class="btn blog_btn"
+          data-bs-toggle="modal"
+          data-bs-target="#blogModal{{data.id}}"
+        >
+          Read More
+        </button>
+      </div>
+    </div>
+    {% endfor%}
+  </div>
+</div>

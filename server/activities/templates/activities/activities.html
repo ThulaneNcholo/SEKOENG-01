@@ -89,10 +89,13 @@
           {{data.count_description}}
         </p>
         {% else %}
+        <!-- divider  -->
+        {% if data.price_per_person%}
         <h2 class="fw-bold page_title">
           R{{data.price_per_person}}
           <span class="activity_price">per person</span>
         </h2>
+        {% endif%}
         <p class="text-secondary desciption_style">{{data.description}}</p>
         {% endif %}
         <a href="{% url 'activities-details' data.id %}">

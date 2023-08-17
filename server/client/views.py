@@ -16,7 +16,19 @@ def IndexView(request):
     rooms = RoomsModel.objects.all()
     packages = PackagesModel.objects.all()
     events = EventsModel.objects.all()
+    blog = BlogModel.objects.all()
     facilities = FacilityModel.objects.all()[:3]
+
+    # Get the current date and time
+    current_datetime = datetime.now()
+    # Get the day of the week as an integer (0 for Monday, 1 for Tuesday, and so on)
+    day_of_week = current_datetime.weekday()
+
+    # Check if the day falls on Monday to Thursday (0 to 3)
+    if day_of_week <= 3:
+        week_day = 'weekday'
+    else:
+        week_day = 'weekend'
 
     activities = ActivitiesModel.objects.all()
     for i in activities:
@@ -34,7 +46,9 @@ def IndexView(request):
         "rooms": rooms,
         "packages": packages,
         "events": events,
-        "facilities": facilities
+        "facilities": facilities,
+        "week_day" : week_day,
+        "blog" : blog
     }
 
     return render(request, 'client/index.html', context)

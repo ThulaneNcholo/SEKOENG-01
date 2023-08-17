@@ -1,0 +1,147 @@
+{% extends 'client/base.html' %}
+<!-- divider  -->
+{% load static %}
+<!-- divider  -->
+{% block content %}
+<style>
+  :root {
+    --primary_color: #183f3c;
+    --secondary_color: #ef962e;
+    --headings_color: #222222;
+    --secondary-headings: #717171;
+    --secondary-page-background: #f9f7f2;
+    --secondary-color: #717171;
+    --heading-font: "Libre Baskerville", serif;
+    --paragraph-font: "Figtree", sans-serif;
+  }
+
+  .main_container {
+    background-color: var(--secondary-page-background);
+  }
+
+  .back_arrow {
+    color: var(--primary_color);
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .back_arrow:hover {
+    color: var(--secondary_color);
+    cursor: pointer;
+  }
+
+  .container_padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .event_title {
+    color: var(--primary_color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 40px;
+    width: 60%;
+  }
+
+  .event_image {
+    height: 450px;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .event_date_container {
+    background-color: var(--secondary_color);
+    border-radius: 12px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .content_container {
+    background-color: var(--primary_color);
+    border-radius: 12px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .paragraph_text {
+    color: var(--secondary-page-background) !important;
+    font-family: var(--paragraph-font);
+  }
+
+  .page_divider {
+    height: 100px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 576px) {
+    .event_title {
+      font-size: 30px;
+      width: 100%;
+    }
+
+    .page_divider {
+      height: 30px;
+      width: 100%;
+    }
+
+    .event_image {
+      height: 250px;
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+  }
+
+  .event_contact_btn {
+    background-color: var(--secondary_color);
+    color: var(--secondary-page-background);
+    font-weight: 700;
+    border-radius: 12px;
+  }
+</style>
+
+<div class="event_hero"></div>
+
+<div class="main_container">
+  <div class="container container_padding">
+    <i
+      class="bi bi-arrow-left-circle-fill back_arrow"
+      onclick="history.back()"
+    ></i>
+    <div class="row mt-5">
+      <div class="col-12 col-md-6 mb-5">
+        <img
+          src="{{event.image.url}}"
+          alt="SEKGOENG CULLIAN LUXURY COTTAGES events"
+          class="event_image"
+        />
+      </div>
+      <div class="col-12 col-md-6 mb-5 d-flex align-items-center">
+        <div>
+          <h1 class="event_title mb-4">{{event.title}}</h1>
+          <a href="{% url 'contact' %}">
+            <button class="btn event_contact_btn px-5 py-2">Contact Us</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page_divider"></div>
+    <div class="event_date_container container">
+      <h1 class="event_title">{{event.start_date|date:"d"}}</h1>
+      <h1 class="event_title">{{event.start_date|date:"l,F"}}</h1>
+      <h1 class="event_title">{{event.start_date|date:"Y"}}</h1>
+    </div>
+
+    <div class="page_divider"></div>
+    <div class="content_container">
+      <div class="container">
+        <p class="paragraph_text">{{event.blog_section|safe}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- divider  -->
+{% endblock %}

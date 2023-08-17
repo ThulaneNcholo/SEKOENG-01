@@ -7,5 +7,6 @@ urlpatterns = [
     path('details-view/<int:id>', views.CottageDetailsView, name='details-view'),
     path('room-booking/<int:id>', views.BookCottageView, name='room-booking'),
     path('reserve/<int:id>', views.CottageInfoView, name='reserve'),
+    path('breakfast/<int:id>', views.BreakfastView, name='breakfast'),
     path('message', views.MessageView, name='message'),
 ]

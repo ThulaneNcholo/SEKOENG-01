@@ -44,6 +44,24 @@
     color: var(--primary_color);
   }
 
+  .cross_price {
+    font-size: 18px;
+    color: var(--primary_color);
+    font-weight: 700;
+    text-decoration: line-through;
+  }
+
+  .weekend_prices {
+    font-size: 18px;
+    color: var(--primary_color);
+    font-weight: 700;
+  }
+
+  .weekend_prices_discount {
+    font-size: 16px;
+    color: var(--secondary_color);
+  }
+
   .btn_reserve {
     background-color: var(--primary_color);
     color: var(--secondary-page-background);
@@ -83,6 +101,23 @@
   .primary_container {
     background-color: var(--primary_color);
   }
+
+  .breakfast_title {
+    font-family: var(--heading-font);
+    font-size: 18px;
+    color: var(--primary_color);
+    font-weight: 700;
+  }
+
+  .breakfast_price {
+    color: var(--primary_color);
+    font-weight: 700;
+    font-family: var(--paragraph-font);
+  }
+
+  .price_style {
+    color: var(--secondary_color) !important;
+  }
 </style>
 
 <div class="primary_container container_padding">
@@ -93,10 +128,25 @@
     ></i>
     <div class="d-flex justify-content-center">
       <div class="booking_card p-3 mt-5">
+        {% if week_day == 'weekday' %}
         <h1 class="price_title mb-5">
-          <span class="price">R{{room.price}}</span>
+          <span class="price">R{{room.room_prices.room_only}}</span>
           <span class="night_title">per night</span>
         </h1>
+        <!-- <p class="mb-5" style="color: #183f3c">
+          Friday, Saturday, Sunday price
+          <span class="weekend_prices">R{{room.room_prices.room_weekend}}</span>
+          <span class="weekend_prices_discount">per night</span>
+        </p> -->
+        {% else %}
+        <h1 class="price_title mb-5">
+          <span class="price">R{{room.room_prices.room_weekend}}</span>
+          <span class="cross_price"
+            >R{{room.room_prices.room_original_price}}</span
+          >
+          <span class="night_title">per night</span>
+        </h1>
+        {% endif %}
 
         <!-- Form submit  -->
         <div id="reserveDate">
@@ -112,6 +162,9 @@
                     id="floatingInput"
                     placeholder="check in"
                     name="checkin"
+                    hx-post="{% url 'breakfast' room.id %}"
+                    hx-trigger="change"
+                    hx-target="#breakfast"
                   />
                   <label for="floatingInput">Check in</label>
                 </div>
@@ -124,26 +177,31 @@
                     id="floatingInput"
                     placeholder="check out"
                     name="checkout"
+                    hx-post="{% url 'breakfast' room.id %}"
+                    hx-trigger="change"
+                    hx-target="#breakfast"
                   />
                   <label for="floatingInput">Check out</label>
                 </div>
               </div>
             </div>
-            <select
-              class="form-select py-3 form_container"
-              aria-label="Default select example"
-              name="guest"
-            >
-              {% with num=room.people %}
-              <!-- divider  -->
-              {% for i in ""|rjust:num %}
-              <option value="{{ forloop.counter }}">
-                {{ forloop.counter }} Guest
-              </option>
-              {% endfor %}
-              <!-- divder  -->
-              {% endwith %}
-            </select>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="guest"
+                value="{{room.people}}"
+                id="floatingInput"
+                placeholder="Guests"
+                readonly
+              />
+              <label for="floatingInput">Guests</label>
+            </div>
+
+            <!-- ======= Breakfast Partial ======= -->
+            <div id="breakfast">
+              {% include 'partials/breakfastPartial.html' %}
+            </div>
 
             <center>
               <button

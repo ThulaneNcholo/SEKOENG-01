@@ -40,15 +40,23 @@
       <div class="col-12 col-md mb-3">
         <ul class="nav flex-column">
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold">Home</a>
+            <a href="{% url 'index' %}" class="nav-link p-0 footer_text fw-bold"
+              >Home</a
+            >
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold"
+            <a
+              href="{% url 'Accommodation' %}"
+              class="nav-link p-0 footer_text fw-bold"
               >Accommodation</a
             >
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold">Activities</a>
+            <a
+              href="{% url 'activities' %}"
+              class="nav-link p-0 footer_text fw-bold"
+              >Activities</a
+            >
           </li>
         </ul>
       </div>
@@ -57,13 +65,25 @@
         <h5></h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold">Facilities</a>
+            <a
+              href="{% url 'facilities' %}"
+              class="nav-link p-0 footer_text fw-bold"
+              >Facilities</a
+            >
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold">Events</a>
+            <a
+              href="{% url 'events' %}"
+              class="nav-link p-0 footer_text fw-bold"
+              >Events</a
+            >
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold">Gallary</a>
+            <a
+              href="{% url 'gallary' %}"
+              class="nav-link p-0 footer_text fw-bold"
+              >Gallary</a
+            >
           </li>
         </ul>
       </div>
@@ -72,16 +92,22 @@
         <h5></h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold">About us</a>
+            <a href="{% url 'about' %}" class="nav-link p-0 footer_text fw-bold"
+              >About us</a
+            >
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 footer_text fw-bold">Contact</a>
+            <a
+              href="{% url 'contact' %}"
+              class="nav-link p-0 footer_text fw-bold"
+              >Contact</a
+            >
           </li>
         </ul>
       </div>
     </footer>
     <center>
-      <p class="text-center mb-0 footer_text pb-5">© 2021 Company, Inc</p>
+      <p class="text-center mb-0 footer_text pb-5">© 2021 SEKGOENG, Inc</p>
     </center>
   </div>
 </div>
